@@ -1,0 +1,123 @@
+
+/*------------------------------------------------------------------------------
+
+Code Editor -PHP-
+
+------------------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------------------
+
+BASE SETTING
+
+------------------------------------------------------------------------------*/
+* {
+	margin:10;
+	padding:10;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+	font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+	background:#fff;
+}
+
+#container {
+	height:100%;
+}
+
+
+/*------------------------------------------------------------------------------
+
+HEADER SETTING
+
+------------------------------------------------------------------------------*/
+header {
+	background:#96ecb0;
+	border-bottom: 1px solid #2b2b2b;
+	height:40px;
+	width: 800px;
+}
+
+a:hover{
+    opacity: 0.6; 
+    filter: alpha(opacity=60); 
+    -moz-opacity: 0.6;
+}
+
+#box {
+	width:300px;
+	height:200px;
+}
+
+.clear {
+	clear:both;
+}
+
+/*------------------------------------------------------------------------------
+
+CONTENTS SETTING
+
+------------------------------------------------------------------------------*/
+
+#left {
+    background:#e7e9e8;
+	width:800px;
+	height:100%;
+	float:left;
+	position:relative;
+}
+
+#box {
+	width:300px;
+	height:200px;
+}
+
+.preview-container {
+position: fixed;
+z-index: 100;
+left: 300px;
+right: 0;
+bottom: 0;
+top: 0;
+}
+
+#preview {
+	width: 100%;
+	height:100%;
+	box-shadow: 1px 1px 10px rgba(0,0,0,0.6);
+	position: absolute;
+	top:0;
+	background: rgb(243, 217, 217);
+}
+
+
+#clear {
+	clear:both;
+}
+
+
+code2 {
+	padding:5px;
+}
+
+iframe {
+	float: left;
+    border: 0px;
+}
+      
+#title_lesson {
+width: 590px;
+padding: 5px;
+font-size: 14px;
+background: #222;
+color: #777;
+}
+
+/*------------------------------------------------------------------------------
+CSS SETTINGS END---////
+------------------------------------------------------------------------------*/
