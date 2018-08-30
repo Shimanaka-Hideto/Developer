@@ -25,53 +25,68 @@
         <script src="common/css/css.js"></script>
         <script src="common/clike/clike.js"></script>
         <script src="common/js/php.js"></script>
+        <script src="common/js/jquery.min.js"></script>
+        <script src="common/js/jquery-runpark.js"></script>
         <style type="text/css">.CodeMirror {border-top: 1px solid  black; border-bottom: 1px solid black;}</style>
     </head>
     <header><h2>Code Editor -PHP-</h2>
-        <h3>変数に文字や数字を代入して表示させよう</h3>
-        <p>下記のコードでいくつか間違いがあります。期待する出力値を参考に、修正して下さい。</p>
-        <p>年齢は現在の年を取得後、誕生年から算出します。年齢が未入力や数字以外と18歳未満、66歳以上の場合は</p>
-        <p>『○○さんの年齢は不明です。』と表示するようにしましょう。</p>
-        <p>（今回は誕生月については考慮しなくても良いとします）</p>
+        <h3>配列の要素をバブルソートしよう</h3>
+        期待する出力値の結果になるように、下記のコードに関数を追加して下さい。<br>
+        初めに配列の要素を表示し、次に昇順ソートして表示します。最後に降順ソートして表示して下さい。<br>
+        ソースコードを入力後、右の実行ボタンを押してください。<br>
+        （PHPにはソートの関数がありますが、今回は理解力を付けるために自前で作成しましょう）
     </header>
     <body>
         <div id="container">
             <section id="left">
                 <!-- Text Area -->
                 <div id="title_editor">エディット画面</div>
-                <form action="view.php" method="post"><textarea id="code" name="code">
-<!DOCTYPE html>
-<html lang="ja">
-    <meta charset="UTF-8">
-    <?php
-        // 名前の変数
-        $name = "テスト太郎";
-        // 年齢用の変数
-        $age = 20;   
-        // 勤務先の変数
-        $company = "PHP株式会社";
-    ?>
-    <input type="submit" value="コードを実行">
-    <?php
-        echo $name . "さんの年齢は" . $age . "歳です。";
-    ?>
-    <br>
-    <?php
-        echo $company . "の社員です。";
-    ?>
-</html>
+                <form><textarea id="code" name="code" onkeyup="(function(ev){
+                    var textarea = ev.target ||  ev.srcElement;
+                    var value = textarea.value;
+                    var lines = 1;
+                    for (var i = 0, l = value.length; i < l; i++){
+                        if (value.charAt(i) == '\n') lines++;
+                    }
+                    textarea.setAttribute('rows', lines);
+                })(event)">
+<?php
+    // 配列の要素を設定する
+    $arr = array(8, 33, 14, 82, 47, 65, 10, 77, 29, 58, 6, 24, 61, 95);
+    // 配列の要素を表示する
+    echo "ソート前の配列の要素" . "<br>";
+    result_view($arr);
+    // 表示用の関数
+    function result_view($arr){
+        for($arr as $result){
+            echo $result . " ";
+        }
+        echo "<br>";
+    }
+    // ↓ your code enter!! ↓
+    // 昇順ソートした配列を表示する
+    echo "昇順ソート後の配列の要素" . "<br>";
+    result_view($arr);
+    // 降順ソートした配列を表示する
+    echo "降順ソート後の配列の要素" . "<br>";
+    result_view($arr);
+
+    // 昇順ソートをする
+
+    // 降順ソートをする
+
+?>
                 </textarea></form>
                 <!-- Text Area End -->
                 <div id="hint-box">
-                        <b>ヒント</b><br>
-                        ・変数に代入する値で文字列は ""（ダブルクォーテーション）か ''（シングルクォーテーション）で囲む<br>
-                        ・行末には ；（セミコロン）を付ける<br>
-                        ・論理演算子 ＆＆ は演算対象の両方が true の時は true を、それ以外の時は false を返す<br>
-                        ・論理演算子 || は 演算対象の両方が false の時は false を、それ以外の時は true を返す<br>
-                        <b>参考</b><br>
-                        isNaN()関数・・・引数が数値ではないことをチェックします<br>
-                        typeof演算子・・・対象となる値のデータ型を表す文字列を返します<br>
-                    </div>
+                    <input type="submit" value="実行" style="width: 100px" onclick="$('#code').runPark('#dst')"><br><br>    
+                    <b>ヒント</b><br>
+                    ・バブルソートとは隣接要素を比較し大小逆なら入替える作業を、全要素の順序が正しくなるまで繰返すアルゴリズムです。<br>
+                    <b>参考（ソートの種類）</b><br>
+                    バブルソートの他に、シェーカーソート、コムソート、ノームソート、選択ソート、挿入ソート、シェルソート、<br>
+                    クイックソート、バケットソート、基数ソート、ヒープソート、マージソートなどがあります。<br>
+                    それぞれ長所、短所があるので状況によって使い分けると良いでしょう。
+                </div>
             </section>
             <div id="preview-container">
                 <div id="preview-title">
@@ -99,25 +114,16 @@
                     });
 
                     editor.foldCode(CodeMirror.Pos(13,0));
-                    editor.on("change", function() {
-                        clearTimeout(delay);
-                        delay = setTimeout(updatePreview, 0);
-                    });
-                    
-                    function updatePreview() {
-                        var previewFrame = document.getElementById('preview');
-                        var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
-                        preview.open();
-                        preview.write(editor.getValue());
-                        preview.close();
-                    }
-                    setTimeout(updatePreview, 0);
-                    editor.save();
                 </script>
+                <div id ="dst" class="evalout"></div>
                 <div id="succesview">
                     <h3>期待する出力値</h3>
-                    テスト太郎さんの年齢は48歳です。<br>
-                    JavaScript株式会社の部長です。
+                    ソート前の配列の要素<br>
+                    8 33 14 82 47 65 10 77 29 58 6 24 61 95 <br>
+                    昇順ソート後の配列の要素<br>
+                    6 8 10 14 24 29 33 47 58 61 65 77 82 95 <br>
+                    降順ソート後の配列の要素<br>
+                    95 82 77 65 61 58 47 33 29 24 14 10 8 6 <br>
                 </div>
             </div>
         </div>
