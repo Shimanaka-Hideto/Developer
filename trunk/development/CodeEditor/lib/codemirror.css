@@ -3,7 +3,7 @@
 .CodeMirror {
   /* Set height, width, borders, and global font properties here */
   font-family: monospace;
-  height: 300px;
+  height: 510px;
   color: black;
   direction: ltr;
 }
@@ -241,7 +241,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #a22;}
   -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0;
   border-width: 0;
   background: transparent;
-  font-family: inherit;
+  font-family: sans-serif;
   font-size: inherit;
   margin: 0;
   white-space: pre;

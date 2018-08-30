@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" keyword="CodeEditorPHP">
+        <title>Code Editor -PHP-</title>
+        <link rel="stylesheet" href="lib/codemirror.css">
+        <link rel="stylesheet" href="common/css/index.css">
+        <link rel="stylesheet" href="addon/fold/foldgutter.css">
+        <link rel="stylesheet" href="theme/3024-night.css">
+        <script src="lib/codemirror.js"></script>
+        <script src="addon/edit/matchbrackets.js"></script>
+        <script src="addon/comment/continuecomment.js"></script>
+        <script src="addon/comment/comment.js"></script>
+        <script src="addon/fold/foldcode.js"></script>
+        <script src="addon/fold/foldgutter.js"></script>
+        <script src="addon/fold/brace-fold.js"></script>
+        <script src="addon/fold/xml-fold.js"></script>
+        <script src="addon/fold/indent-fold.js"></script>
+        <script src="addon/fold/markdown-fold.js"></script>
+        <script src="addon/fold/comment-fold.js"></script>
+        <script src="common/javascript/javascript.js"></script>
+        <script src="common/htmlmixed/htmlmixed.js"></script>
+        <script src="common/xml/xml.js"></script>
+        <script src="common/javascript/javascript.js"></script>
+        <script src="common/css/css.js"></script>
+        <script src="common/clike/clike.js"></script>
+        <script src="common/js/php.js"></script>
+        <style type="text/css">.CodeMirror {border-top: 1px solid  black; border-bottom: 1px solid black;}</style>
+    </head>
+    <header><h2>Code Editor -PHP-</h2>
+        <h3>変数に文字や数字を代入して表示させよう</h3>
+        <p>下記のコードでいくつか間違いがあります。期待する出力値を参考に、修正して下さい。</p>
+        <p>年齢は現在の年を取得後、誕生年から算出します。年齢が未入力や数字以外と18歳未満、66歳以上の場合は</p>
+        <p>『○○さんの年齢は不明です。』と表示するようにしましょう。</p>
+        <p>（今回は誕生月については考慮しなくても良いとします）</p>
+    </header>
+    <body>
+        <div id="container">
+            <section id="left">
+                <!-- Text Area -->
+                <div id="title_editor">エディット画面</div>
+                <form action="view.php" method="post"><textarea id="code" name="code">
+<!DOCTYPE html>
+<html lang="ja">
+    <meta charset="UTF-8">
+    <?php
+        // 名前の変数
+        $name = "テスト太郎";
+        // 年齢用の変数
+        $age = 20;   
+        // 勤務先の変数
+        $company = "PHP株式会社";
+    ?>
+    <input type="submit" value="コードを実行">
+    <?php
+        echo $name . "さんの年齢は" . $age . "歳です。";
+    ?>
+    <br>
+    <?php
+        echo $company . "の社員です。";
+    ?>
+</html>
+                </textarea></form>
+                <!-- Text Area End -->
+                <div id="hint-box">
+                        <b>ヒント</b><br>
+                        ・変数に代入する値で文字列は ""（ダブルクォーテーション）か ''（シングルクォーテーション）で囲む<br>
+                        ・行末には ；（セミコロン）を付ける<br>
+                        ・論理演算子 ＆＆ は演算対象の両方が true の時は true を、それ以外の時は false を返す<br>
+                        ・論理演算子 || は 演算対象の両方が false の時は false を、それ以外の時は true を返す<br>
+                        <b>参考</b><br>
+                        isNaN()関数・・・引数が数値ではないことをチェックします<br>
+                        typeof演算子・・・対象となる値のデータ型を表す文字列を返します<br>
+                    </div>
+            </section>
+            <div id="preview-container">
+                <div id="preview-title">
+                    <h3>出力値</h3>
+                </div>
+                <iframe id="preview"></iframe>
+                <script>
+                    var delay;
+                    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+                        lineNumbers: true,
+                        matchBrackets: true,
+                        mode: {
+                            name: "application/x-httpd-php",
+                            startOpen: true
+                        },
+                        continueComments: "Enter",
+                        extraKeys: {"Ctrl-Q": function(cm){ cm.foldCode(cm.getCursor()); }},
+                        indentUnit: 4,
+                        indentWithTabs: true,
+                        enterMode: "keep",
+                        tabMode: "shift",
+                        theme: "3024-night",
+                        foldGutter: true,
+                        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+                    });
+
+                    editor.foldCode(CodeMirror.Pos(13,0));
+                    editor.on("change", function() {
+                        clearTimeout(delay);
+                        delay = setTimeout(updatePreview, 0);
+                    });
+                    
+                    function updatePreview() {
+                        var previewFrame = document.getElementById('preview');
+                        var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
+                        preview.open();
+                        preview.write(editor.getValue());
+                        preview.close();
+                    }
+                    setTimeout(updatePreview, 0);
+                    editor.save();
+                </script>
+                <div id="succesview">
+                    <h3>期待する出力値</h3>
+                    テスト太郎さんの年齢は48歳です。<br>
+                    JavaScript株式会社の部長です。
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
