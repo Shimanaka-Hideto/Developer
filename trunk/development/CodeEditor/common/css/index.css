@@ -42,7 +42,9 @@ header {
 	box-shadow: 1px 1px 10px rgba(0,0,0,0.6);
 	height:18%;
 	width: 49%;
+	font-size: 90%;
 	padding-left: 1%;
+	overflow: auto;
 }
 
 a:hover{
@@ -69,7 +71,7 @@ CONTENTS SETTING
 #left {
 	background:#f8f4f4;
 	width: 50%;
-	height: 80%;
+	height: 900px;
 	float: left;
 	position: relative;
 }
@@ -78,8 +80,10 @@ CONTENTS SETTING
 	background-image: url("../../images/white01.jpg");
 	box-shadow: 1px 1px 10px rgba(0,0,0,0.6);
 	top: 80%;
-	height: 20%;
+	height: 21%;
 	padding: 1% 1%;
+	font-size: 80%;
+	overflow: auto;
 }
 
 .preview-container {

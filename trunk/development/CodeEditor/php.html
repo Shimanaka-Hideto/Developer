@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" keyword="CodeEditorPHP">
+        <title>Code Editor -PHP-</title>
+        <link rel="stylesheet" href="lib/codemirror.css">
+        <link rel="stylesheet" href="common/css/index_design.css">
+        <link rel="stylesheet" href="addon/fold/foldgutter.css">
+        <link rel="stylesheet" href="theme/3024-night.css">
+        <script src="lib/codemirror.js"></script>
+        <script src="addon/edit/matchbrackets.js"></script>
+        <script src="addon/comment/continuecomment.js"></script>
+        <script src="addon/comment/comment.js"></script>
+        <script src="addon/fold/foldcode.js"></script>
+        <script src="addon/fold/foldgutter.js"></script>
+        <script src="addon/fold/brace-fold.js"></script>
+        <script src="addon/fold/xml-fold.js"></script>
+        <script src="addon/fold/indent-fold.js"></script>
+        <script src="addon/fold/markdown-fold.js"></script>
+        <script src="addon/fold/comment-fold.js"></script>
+        <script src="common/javascript/javascript.js"></script>
+        <script src="common/htmlmixed/htmlmixed.js"></script>
+        <script src="common/xml/xml.js"></script>
+        <script src="common/javascript/javascript.js"></script>
+        <script src="common/css/css.js"></script>
+        <script src="common/clike/clike.js"></script>
+        <script src="common/js/php.js"></script>
+        <script src="common/js/jquery.min.js"></script>
+        <script src="common/js/jquery-runpark.js"></script>
+        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+        <style type="text/css">.CodeMirror {border-top: 1px solid  black; border-bottom: 1px solid black;}</style>
+    </head>
+    <body>
+        <div id="header">
+            <table>
+                <td><h2>Code Editor -PHP-</h2><h3>配列の要素をソートしよう</h3></td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td>
+                期待する出力値の結果になるように、下記のコードに関数を追加して下さい。<br>
+                初めに配列の要素を表示し、次に昇順ソートして表示します。最後に降順ソートして表示して下さい。<br>
+                ソースコードを入力後、右の実行ボタンを押してください。<br>
+                （PHPにはソートの関数がありますが、今回は理解力を付けるために自前で作成しましょう）</td>
+            </table>
+        </div>
+        <div id="container">
+            <div id="left">
+                <!-- Slide Area -->
+                <div id="slide">
+                    <table>
+                        <tr><td id="slide-main">
+                            <img border="0" src="images/test_slide.jpg" alt="スライド" align="middle">
+                        </td>
+                        <td rowspan="2" id="slide-text">
+                                ここにスライドの内容をテキスト表示します
+                        </td></tr>
+                        <tr><td id="slide-sub">
+                            <a href="#" class="btn" id="reverse-start-btn" title="最初へ戻る">
+                                <i class="fas fa-fast-backward animated-hover"></i>
+                            </a>&nbsp;&nbsp;
+                            <a href="#" class="btn" id="reverse-btn" title="前へ戻る">
+                                    <i class="fas fa-step-backward animated-hover"></i>
+                            </a>&nbsp;&nbsp;
+                            <a href="#" class="btn" id="forward-btn" title="次へ進む">
+                                    <i class="fas fa-step-forward animated-hover"></i>
+                            </a>&nbsp;&nbsp;
+                            <a href="#" class="btn" id="forward-last-btn" title="最後へ進む">
+                                    <i class="fas fa-fast-forward animated-hover"></i>
+                            </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        </td></tr>
+                    </table>
+                </div>
+                <!-- Text Area -->
+                <div id="code-main">エディット画面
+                    <div id="code_editor">
+                        <form><textarea id="code" name="code" onkeyup="(function(ev){
+                            var textarea = ev.target ||  ev.srcElement;
+                            var value = textarea.value;
+                            var lines = 1;
+                            for (var i = 0, l = value.length; i < l; i++){
+                                if (value.charAt(i) == '\n') lines++;
+                            }
+                            textarea.setAttribute('rows', lines);
+                        })(event)">
+<?php
+    // 配列の要素を設定する
+    $arr = array(8, 33, 14, 82, 47, 65, 10, 77, 29, 58, 6, 24, 61, 95);
+    // 配列の要素を表示する
+    echo "ソート前の配列の要素" . "<br>";
+    result_view($arr);
+    // 表示用の関数
+    function result_view($arr){
+        for($arr as $result){
+            echo $result . " ";
+        }
+        echo "<br>";
+    }
+    // ↓ your code enter!! ↓
+    // 昇順ソートした配列を表示する
+    echo "昇順ソート後の配列の要素" . "<br>";
+    bubbleSort($arr, "asc");
+    result_view($arr);
+    // 降順ソートした配列を表示する
+    echo "降順ソート後の配列の要素" . "<br>";
+    bubbleSort($arr, "desc");
+    result_view($arr);
+
+    // ソートをする
+    function bubbleSort($arr, $method){
+        if($method == "asc"){
+            for($i = 0; $i < $arr.length; $i++){
+                for($j = 0; $j < $arr.length - 1 - $i; $j++){
+                    // 昇順ソート
+                    if($method == "asc"){
+                        if($arr[$j] > $arr[$j + 1]){
+                            $temp = $arr[j];
+                            $arr[$j] = $arr[$j + 1];
+                            $arr[$j + 1] = $temp;
+                        }
+                    } elseif($method == "desc"){
+                        // 降順ソート
+                        if($arr[$j] < $arr[$j + 1]){
+                            $temp = $arr[j];
+                            $arr[$j] = $arr[$j + 1];
+                            $arr[$j + 1] = $temp;
+                        }
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    return $arr;
+?>
+                        </textarea></form>
+                    </div>
+                    <div id="code-sub">
+                        <a href="#" class="btn" id="beginning-btn" title="最初からやり直す">
+                            <i class="fas fa-reply animated-hover"></i>
+                        </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="#" class="btn" id="run-btn" title="コードを実行">
+                                <i class="fas fa-caret-square-right animated-hover"></i>
+                        </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                    <!-- Text Area End -->
+                </div>
+            </div>
+            <div id="right">
+                <!-- Preview Area -->
+                <div id="preview-title">
+                    <h3>出力値</h3>
+                </div>
+                <div id="preview">
+                    <script>
+                        var delay;
+                        var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+                            lineNumbers: true,
+                            matchBrackets: true,
+                            mode: {
+                                name: "application/x-httpd-php",
+                                startOpen: true
+                            },
+                            continueComments: "Enter",
+                            extraKeys: {"Ctrl-Q": function(cm){ cm.foldCode(cm.getCursor()); }},
+                            indentUnit: 4,
+                            indentWithTabs: true,
+                            enterMode: "keep",
+                            tabMode: "shift",
+                            theme: "3024-night",
+                            foldGutter: true,
+                            gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+                        });
+
+                        editor.foldCode(CodeMirror.Pos(13,0));
+                    </script>
+                </div>
+                <div id ="dst" class="evalout"></div>
+                <!-- SuccesView Area -->
+                <div id="succesview">
+                    <h3>期待する出力値</h3>
+                    ソート前の配列の要素<br>
+                    8 33 14 82 47 65 10 77 29 58 6 24 61 95 <br>
+                    昇順ソート後の配列の要素<br>
+                    6 8 10 14 24 29 33 47 58 61 65 77 82 95 <br>
+                    降順ソート後の配列の要素<br>
+                    95 82 77 65 61 58 47 33 29 24 14 10 8 6 <br>
+                </div>
+                <!-- Hint ARea -->
+                <div id="hint-box">   
+                    <b>ヒント</b><br>
+                    ・バブルソートとは隣接要素を比較し大小逆なら入替える作業を、全要素の順序が正しくなるまで繰返すアルゴリズムです。<br>
+                    <b>参考（ソートの種類）</b><br>
+                    バブルソートの他に、シェーカーソート、コムソート、ノームソート、選択ソート、挿入ソート、シェルソート、<br>
+                    クイックソート、バケットソート、基数ソート、ヒープソート、マージソートなどがあります。<br>
+                    それぞれ長所、短所があるので状況によって使い分けると良いでしょう。
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

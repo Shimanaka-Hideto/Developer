@@ -30,7 +30,7 @@
         <style type="text/css">.CodeMirror {border-top: 1px solid  black; border-bottom: 1px solid black;}</style>
     </head>
     <header><h2>Code Editor -PHP-</h2>
-        <h3>配列の要素をバブルソートしよう</h3>
+        <h3>配列の要素をソートしよう</h3>
         期待する出力値の結果になるように、下記のコードに関数を追加して下さい。<br>
         初めに配列の要素を表示し、次に昇順ソートして表示します。最後に降順ソートして表示して下さい。<br>
         ソースコードを入力後、右の実行ボタンを押してください。<br>
@@ -41,6 +41,7 @@
             <section id="left">
                 <!-- Text Area -->
                 <div id="title_editor">エディット画面</div>
+                <div id="code_editor">
                 <form><textarea id="code" name="code" onkeyup="(function(ev){
                     var textarea = ev.target ||  ev.srcElement;
                     var value = textarea.value;
@@ -66,17 +67,42 @@
     // ↓ your code enter!! ↓
     // 昇順ソートした配列を表示する
     echo "昇順ソート後の配列の要素" . "<br>";
+    bubbleSort($arr, "asc");
     result_view($arr);
     // 降順ソートした配列を表示する
     echo "降順ソート後の配列の要素" . "<br>";
+    bubbleSort($arr, "desc");
     result_view($arr);
 
-    // 昇順ソートをする
-
-    // 降順ソートをする
-
+    // ソートをする
+    function bubbleSort($arr, $method){
+        if($method == "asc"){
+            for($i = 0; $i < $arr.length; $i++){
+                for($j = 0; $j < $arr.length - 1 - $i; $j++){
+                    // 昇順ソート
+                    if($method == "asc"){
+                        if($arr[$j] > $arr[$j + 1]){
+                            $temp = $arr[j];
+                            $arr[$j] = $arr[$j + 1];
+                            $arr[$j + 1] = $temp;
+                        }
+                    } elseif($method == "desc"){
+                        // 降順ソート
+                        if($arr[$j] < $arr[$j + 1]){
+                            $temp = $arr[j];
+                            $arr[$j] = $arr[$j + 1];
+                            $arr[$j + 1] = $temp;
+                        }
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    return $arr;
 ?>
-                </textarea></form>
+                </textarea></form></div>
                 <!-- Text Area End -->
                 <div id="hint-box">
                     <input type="submit" value="実行" style="width: 100px" onclick="$('#code').runPark('#dst')"><br><br>    

@@ -1,0 +1,226 @@
+
+/*------------------------------------------------------------------------------
+
+index_design (共通用）
+
+------------------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------------------
+
+BASE SETTING
+
+------------------------------------------------------------------------------*/
+* {
+	margin:0;
+	padding:0;
+}
+
+html {
+    width:  100%;
+    height: 100%;
+}
+
+body {
+    background-image: url("../../images/green02.jpg");
+    width:  100%;
+    height: 100%;
+	font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+}
+
+/*------------------------------------------------------------------------------
+
+HEADER SETTING
+
+------------------------------------------------------------------------------*/
+#container {
+    position: relative;
+	width: 100%;
+}
+
+#header {	
+	height:10%;
+    width: 100%;
+    font-size: 90%;
+    padding-left: 2%;
+    position: relative;
+}
+
+a:hover{
+    opacity: 0.6; 
+    filter: alpha(opacity=60); 
+    -moz-opacity: 0.6;
+}
+
+#clear {
+	clear:both;
+}
+
+/*------------------------------------------------------------------------------
+
+CONTENTS SETTING LEFT
+
+------------------------------------------------------------------------------*/
+#left {
+    float: left;
+	width: 50%;
+	height: 82%;
+	position: relative;
+}
+
+#slide {
+    text-align: center;
+    align-content: center;
+    margin-top: 1%;
+    margin-left: 4%;
+    margin-right: 2%;
+}
+
+#slide-main {
+    box-shadow: 1px 1px 10px rgba(0,0,0,0.6);
+}
+
+#slide-main img {
+    width:  100%;
+    height: 100%;
+}
+
+#slide-sub {
+    padding: 1%;
+    text-align: right;
+}
+
+#slide-text {
+    padding: 2%;
+    width: 30%;
+    font-size: 90%;
+    background-image: url("../../images/pink01.jpg");
+    box-shadow: 1px 1px 10px rgba(0,0,0,0.6);
+}
+
+#code-main {
+    margin-left: 4%;
+    margin-right: 2%;
+}
+#code-sub {
+    text-align: right;
+    padding: 2%;
+}
+
+/*------------------------------------------------------------------------------
+
+CONTENTS SETTING RIGHT
+
+------------------------------------------------------------------------------*/
+
+#right {
+    float: left;
+    width:  48%;
+    height: 82%;
+    right: 0;
+    bottom: 0;
+	height: 82%;
+	position: relative;
+}
+
+#preview-title {
+	box-shadow: 1px 1px 10px rgba(0,0,0,0.6);
+	position: relative;
+    padding: 1% 1%;
+    margin-top: 1%;
+    margin-right: 2%;
+    margin-left: 2%;
+	background: rgb(238, 237, 247);
+}
+
+#preview {
+    width:  860px; 
+    height: 360px;
+    border: 0px;
+	box-shadow: 1px 1px 10px rgba(0,0,0,0.6);
+	position: relative;
+    padding: 1% 1%;
+    margin-right: 3%;
+    margin-left: 2%;
+    background: rgb(238, 237, 247);
+    overflow: auto;
+}
+
+#succesview {
+	height: 160px;
+	box-shadow: 1px 1px 10px rgba(0,0,0,0.6);
+	position: relative;
+	background-image: url("../../images/pink01.jpg");
+    padding: 1% 1%;
+    margin-top: 1%;
+    margin-right: 2%;
+    margin-left: 2%;
+    font-size: 80%;
+    overflow: auto;
+}
+
+#hint-box {
+	background-image: url("../../images/white01.jpg");
+	box-shadow: 1px 1px 10px rgba(0,0,0,0.6);
+    height: 30%;
+    padding: 1% 1%;
+    margin-top: 1%;
+    margin-right: 2%;
+    margin-left: 2%;
+    font-size: 80%;
+    overflow: auto;
+}
+
+#clear {
+	clear:both;
+}
+
+code2 {
+	padding:5px;
+}
+
+iframe {
+	float: left;
+    border: 0px;
+}
+
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    color: rgba(105, 105, 105, 0.43);/*アイコン色*/
+    width: 40px;
+    height: 40px;
+    line-height: 20px;
+    font-size: 20px;
+    border-radius: 25%;
+    text-align: center;
+    vertical-align: middle;
+    overflow: hidden;
+    font-weight: bold;
+    background-image: -webkit-linear-gradient(#e8e8e8 0%, #d6d6d6 100%);
+    background-image: linear-gradient(#e8e8e8 0%, #d6d6d6 100%);
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.66);
+    box-shadow: inset 0 2px 0 rgba(255,255,255,0.5), 0 2px 2px rgba(0, 0, 0, 0.19);
+    border-bottom: solid 2px #b5b5b5;
+    cursor: pointer;
+}
+
+.btn .fas {
+    line-height: 40px;
+}
+
+.btn:hover {
+    position: relative;
+    top: 2px;
+    left: 2px;
+}
+
+.btn:active {
+    background-image: -webkit-linear-gradient(#efefef 0%, #d6d6d6 100%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 2px 2px rgba(0, 0, 0, 0.19);
+    border-bottom: none;
+    cursor: pointer;
+}
+
+/*------------------------------------------------------------------------------
+CSS SETTINGS END---////
+------------------------------------------------------------------------------*/
