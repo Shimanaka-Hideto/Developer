@@ -3,22 +3,29 @@
     <head>
         <meta charset="UTF-8" keyword="CodeEditorJavaScript">
         <title>Code Editor -JavaScript-</title>
-        <link rel="stylesheet" href="lib/codemirror.css">
-        <link rel="stylesheet" href="common/css/index_design.css">
-        <link rel="stylesheet" href="addon/fold/foldgutter.css">
-        <link rel="stylesheet" href="theme/3024-night.css">
-        <script src="lib/codemirror.js"></script>
-        <script src="addon/edit/matchbrackets.js"></script>
-        <script src="addon/comment/continuecomment.js"></script>
-        <script src="addon/comment/comment.js"></script>
-        <script src="addon/fold/foldcode.js"></script>
-        <script src="addon/fold/foldgutter.js"></script>
-        <script src="addon/fold/brace-fold.js"></script>
-        <script src="addon/fold/xml-fold.js"></script>
-        <script src="addon/fold/indent-fold.js"></script>
-        <script src="addon/fold/markdown-fold.js"></script>
-        <script src="addon/fold/comment-fold.js"></script>
-        <script src="common/javascript/javascript.js"></script>
+        <link rel="stylesheet" type="text/css" media="all" href="lib/codemirror.css">
+        <link rel="stylesheet" type="text/css" media="all" href="common/css/index_design.css">
+        <link rel="stylesheet" type="text/css" media="all" href="addon/fold/foldgutter.css">
+        <link rel="stylesheet" type="text/css" media="all" href="theme/3024-night.css">
+        <link rel="stylesheet" type="text/css" media="all" href="common/css/viewer.min.css">
+        <style>
+            ul {list-style-type: none;}
+            li {display: inline-block;}
+        </style>
+        <script type="text/javascript" src="lib/codemirror.js"></script>
+        <script type="text/javascript" src="addon/edit/matchbrackets.js"></script>
+        <script type="text/javascript" src="addon/comment/continuecomment.js"></script>
+        <script type="text/javascript" src="addon/comment/comment.js"></script>
+        <script type="text/javascript" src="addon/fold/foldcode.js"></script>
+        <script type="text/javascript" src="addon/fold/foldgutter.js"></script>
+        <script type="text/javascript" src="addon/fold/brace-fold.js"></script>
+        <script type="text/javascript" src="addon/fold/xml-fold.js"></script>
+        <script type="text/javascript" src="addon/fold/indent-fold.js"></script>
+        <script type="text/javascript" src="addon/fold/markdown-fold.js"></script>
+        <script type="text/javascript" src="addon/fold/comment-fold.js"></script>
+        <script type="text/javascript" src="common/javascript/javascript.js"></script>
+        <script type="text/javascript" src="common/js/viewer.min.js"></script>
+        <script type="text/javascript" src="common/js/jquery-3.1.0.min.js"></script>
         <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
         <style type="text/css">.CodeMirror {border-top: 1px solid  black; border-bottom: 1px solid black;}</style>
     </head>
@@ -36,34 +43,34 @@
             </div> 
             <div id="left">
                 <!-- Slide Area -->
-                <div id="slide">
-                    <table>
-                        <tr>
-                            <td id="slide-main">
-                                <img border="0" src="images/test_slide.jpg" alt="スライド" align="middle">
-                            </td>
-                            <td rowspan="2" id="slide-text">
-                                ここにスライドの内容をテキスト表示します
-                            </td>
-                        </tr>
-                        <tr>
-                            <td id="slide-sub">
-                                <a href="#" class="btn" id="reverse-start-btn" title="最初へ戻る">
-                                    <i class="fas fa-fast-backward animated-hover"></i>
-                                </a>&nbsp;&nbsp;
-                                <a href="#" class="btn" id="reverse-btn" title="前へ戻る">
-                                    <i class="fas fa-step-backward animated-hover"></i>
-                                </a>&nbsp;&nbsp;
-                                <a href="#" class="btn" id="forward-btn" title="次へ進む">
-                                    <i class="fas fa-step-forward animated-hover"></i>
-                                </a>&nbsp;&nbsp;
-                                <a href="#" class="btn" id="forward-last-btn" title="最後へ進む">
-                                    <i class="fas fa-fast-forward animated-hover"></i>
-                                </a>&nbsp;&nbsp;&nbsp;&nbsp;
-                            </td>
-                        </tr>
-                    </table>
-                </div>                        
+                <div id="slide-main">
+                    <ul id="images">
+                        <li><img src="images/slide_js/lesson01_slide01.jpg" alt="slide01" align="middle" /></li>
+                        <li><img src="images/slide_js/lesson01_slide02.jpg" alt="slide02" align="middle" style="display: none;" /></li>
+                        <li><img src="images/slide_js/lesson01_slide03.jpg" alt="slide03" align="middle" style="display: none;" /></li>
+                        <li><img src="images/slide_js/lesson01_slide04.jpg" alt="slide04" align="middle" style="display: none;" /></li>
+                        <li><img src="images/slide_js/lesson01_slide05.jpg" alt="slide05" align="middle" style="display: none;" /></li>
+                        <li><img src="images/slide_js/lesson01_slide06.jpg" alt="slide06" align="middle" style="display: none;" /></li>
+                        <li><img src="images/slide_js/lesson01_slide07.jpg" alt="slide07" align="middle" style="display: none;" /></li>
+                        <li><img src="images/slide_js/lesson01_slide08.jpg" alt="slide08" align="middle" style="display: none;" /></li>
+                        <li><img src="images/slide_js/lesson01_slide09.jpg" alt="slide09" align="middle" style="display: none;" /></li>
+                        <li><img src="images/slide_js/lesson01_slide10.jpg" alt="slide10" align="middle" style="display: none;" /></li>
+                        <li><img src="images/slide_js/lesson01_slide11.jpg" alt="slide11" align="middle" style="display: none;" /></li>
+                    </ul>
+                </div>
+                <script>
+                    var options = {
+                        title: false,
+                        tooltip: false,
+                        movable: false,
+                        zoomable: false,
+                        rotatable: false,
+                        scalable: false,
+                        fullscreen: false,
+                        toolbar: true,
+                    };
+                    var viewer = new Viewer(document.getElementById('images'), options);
+                </script>                       
                 <!-- Text Area -->
                 <div id="code-main">エディット画面
                     <div id="code_editor">
@@ -94,19 +101,17 @@
         }
         var str2 = company + "の" + position + "です。";
         document.write(str1);
-    &lt;/script&gt;
-    &lt;br&gt;
-    &lt;script&gt;
+        document.write("<br>");
         document.write(str2);
     &lt;/script&gt;
 &lt;/html&gt;
                         </textarea></form>
                     </div>
                     <div id="code-sub">
-                        <a href="#" class="btn" id="beginning-btn" onclick="location.reload();" title="最初からやり直す">
+                        <a href="" class="code-btn" onclick="fnReload();" title="最初からやり直す">
                             <i class="fas fa-reply animated-hover"></i>
                         </a>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="#" class="btn" id="run-btn" onclick="updatePreview();" title="コードを実行">
+                        <a href="#" class="code-btn" onclick="updatePreview();" title="コードを実行">
                             <i class="fas fa-caret-square-right animated-hover"></i>
                         </a>&nbsp;&nbsp;&nbsp;&nbsp;
                     </div>
@@ -138,20 +143,30 @@
             
                         editor.foldCode(CodeMirror.Pos(13,0));
                             
-                        function updatePreview() {
-                            
+                        function updatePreview() {   
                             var previewFrame = document.getElementById('preview');
                             var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
                             preview.open();
                             preview.write(editor.getValue());
                             preview.close();
-                            
                         }
-                        editor.save();
+                        function isSucces() {
+                            window.onload=function(){
+                                var ans=document.body.textContent || document.body.innerText;
+                                alert(ans);
+                            }
+                        }
+                        function fnReload() {
+                            location.reload();
+                        }
+
                     </script>
+                <div id="clear"></div>
                 <!-- SuccesView Area -->
-                <div id="succesview">
+                <div id="succes-title">
                     <h3>期待する出力値</h3>
+                </div>
+                <div id="succesview">
                     テスト太郎さんの年齢は48歳です。<br>
                     JavaScript株式会社の部長です。
                 </div>
