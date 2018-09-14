@@ -32,82 +32,34 @@
             <div id="header">
                 <table>
                     <!-- 比較スタイル '1' -->
-                    <td><h2>Code Editor -JavaScript-</h2><h3>変数に文字や数字を代入して表示させよう</h3></td>
+                    <td><h2>Code Editor -JavaScript-</h2></td>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                    <td>下記のコードでいくつか間違いがあります。期待する出力値を参考に、修正して下さい。<br>
-                    年齢は現在の年を取得後、誕生年から算出します。年齢が未入力や数字以外と18歳未満、66歳以上の場合は<br>
-                    『○○さんの年齢は不明です。』と表示するようにしましょう。<br>
-                    （今回は誕生月については考慮しなくても良いとします）</td>
-                    <td><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <h3 id="result">経過時間：</h3><input type="text" id="durationTime" disabled />
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="js_menu.html" class="wide-btn" id="backmenu-btn">メニューへ戻る</a>
+                    <td><br>
+                        <h2>変数に文字や数字を代入して表示させよう</h2>
                     </td>
                 </table>
+                <div style="float: right; margin-right: 100px">
+                    <h3 id="result">経過時間：</h3><input type="text" id="durationTime" disabled />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="js_menu.html" class="wide-btn" id="backmenu-btn">メニューへ戻る</a>
+                </div>
             </div> 
             <div id="left">
-                <!-- Slide Area -->
-                <div id="slide-main">
-                    <ul class="slider">
-                        <li><a href="#"><img src="images/slide_js/lesson01_slide01.jpg" alt="slide01" align="middle" /></a></li>
-                        <li><a href="#"><img src="images/slide_js/lesson01_slide02.jpg" alt="slide02" align="middle" /></a></li>
-                        <li><a href="#"><img src="images/slide_js/lesson01_slide03.jpg" alt="slide03" align="middle" /></a></li>
-                        <li><a href="#"><img src="images/slide_js/lesson01_slide04.jpg" alt="slide04" align="middle" /></a></li>
-                        <li><a href="#"><img src="images/slide_js/lesson01_slide05.jpg" alt="slide05" align="middle" /></a></li>
-                        <li><a href="#"><img src="images/slide_js/lesson01_slide06.jpg" alt="slide06" align="middle" /></a></li>
-                        <li><a href="#"><img src="images/slide_js/lesson01_slide07.jpg" alt="slide07" align="middle" /></a></li>
-                        <li><a href="#"><img src="images/slide_js/lesson01_slide08.jpg" alt="slide08" align="middle" /></a></li>
-                        <li><a href="#"><img src="images/slide_js/lesson01_slide09.jpg" alt="slide09" align="middle" /></a></li>
-                        <li><a href="#"><img src="images/slide_js/lesson01_slide10.jpg" alt="slide10" align="middle" /></a></li>
-                        <li><a href="#"><img src="images/slide_js/lesson01_slide11.jpg" alt="slide11" align="middle" /></a></li>
-                    </ul>
+                <!-- Question Area -->
+                <div id="left-box">
+                    <p>期待する出力値の結果になるように、コードを作成して下さい。</p>
+                    <p>年齢は現在の年を取得後、誕生年から算出します。年齢が未入力や数字以外と18歳未満、66歳以上の場合は</p>
+                    <p>『○○さんの年齢は不明です。』と表示するようにしましょう。</p>
+                    <p>（今回は誕生月については考慮しなくても良いとします）</p>
+                    <p>では、挑戦して下さい。</p>
                 </div>
                 <div id="slide-btn">
-                    <a href="#" class="code-btn" id="reverse-start-btn" title="最初へ戻る">
-                        <i class="fas fa-fast-backward animated-hover"></i>
-                    </a>&nbsp;&nbsp;
-                    <a href="#" class="code-btn" id="reverse-btn" title="前へ戻る">
-                        <i class="fas fa-step-backward animated-hover"></i>
-                    </a>&nbsp;&nbsp;
-                    <a href="#" class="code-btn" id="forward-btn" title="次へ進む">
-                        <i class="fas fa-step-forward animated-hover"></i>
-                    </a>&nbsp;&nbsp;
-                    <a href="#" class="code-btn" id="forward-last-btn" title="最後へ進む">
-                        <i class="fas fa-fast-forward animated-hover"></i>
-                    </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <div id="maru-image"><img src="images/maru.png" alt="maru" align="middle" /></div>
                     <div id="batsu-image"><img src="images/batsu.png" alt="batsu" align="middle" /></div>
                     <div id="one-image"><img src="images/one.png" alt="1" align="middle" /></div>
                     <div id="two-image"><img src="images/two.png" alt="2" align="middle" /></div>
                     <div id="three-image"><img src="images/three.png" alt="3" align="middle" /></div>
-                </div>
-                <script>
-                    var nowSlide = 0;
-                    // スライドの数
-                    var  allSlide = 11;
-                    $(".slider").slick({
-                        accessibility: false,
-                        arrows: false,
-                        focusOnSelect: true,
-                        infinite: false
-                    });
-                    $('.slider').on('afterChange', function() {
-                        nowSlide = ($('.slider').slick('slickCurrentSlide'));
-                        window.sessionStorage.setItem(['nowSlide'], [nowSlide]);
-                    })
-                    $("#forward-btn").on('click', function(){
-                        $(".slider").slick('slickNext');
-                    });
-                    $("#reverse-btn").on('click', function(){
-                        $(".slider").slick('slickPrev');
-                    });
-                    $("#reverse-start-btn").on('click', function(){
-                        $(".slider").slick('slickGoTo', 0);
-                    });
-                    $("#forward-last-btn").on('click', function(){
-                        $(".slider").slick('slickGoTo', allSlide - 1);
-                    });
-                </script>                     
+                </div><br>                  
                 <!-- Text Area -->
                 <div id="code-main">エディット画面
                     <div id="code_editor">
@@ -118,30 +70,7 @@
     &lt;script&gt;
         // ↓ Input your code from here!! ↓
 
-        // 名前の変数
-        var name = テスト太郎
-        // 誕生年の変数
-        var birth = "1970";
-        // 勤務先の変数
-        var company = "JavaScript株式会社";; 
-        // 役職の変数
-        ver position = "課長";
-        // 今年の年取得
-        var now = new Date();
-        var year = now.getFullYear();
-        // 正規表現
-        var pattern = /^([1-9]\d*|0)$/;
-        var str1 = name + "さんの年齢は不明です。";
-        if (pattern.test(birth)) {
-            var age = year - birth;
-            if(age >  && age < ){
-                str1 = name + "さんの年齢は" + age + "歳です。";
-            }
-        }
-        var str2 = company + "の" + position + "です。";
-        document.write(str2);
-        document.write("<br>");
-        document.write(str1);
+
 
         // ↑ Input your code to here!! ↑
     &lt;/script&gt;

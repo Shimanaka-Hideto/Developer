@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" keyword="CodeEditorJavaScript">
+        <title>Code Editor -JavaScript-</title>
+        <link rel="stylesheet" type="text/css" media="all" href="common/css/slick-theme.css">
+        <link rel="stylesheet" type="text/css" media="all" href="common/css/slick.css">
+        <link rel="stylesheet" type="text/css" media="all" href="lib/codemirror.css">
+        <link rel="stylesheet" type="text/css" media="all" href="common/css/index_style.css">
+        <link rel="stylesheet" type="text/css" media="all" href="addon/fold/foldgutter.css">
+        <link rel="stylesheet" type="text/css" media="all" href="theme/3024-night.css">
+        <script type="text/javascript" src="lib/codemirror.js"></script>
+        <script type="text/javascript" src="addon/edit/matchbrackets.js"></script>
+        <script type="text/javascript" src="addon/comment/continuecomment.js"></script>
+        <script type="text/javascript" src="addon/comment/comment.js"></script>
+        <script type="text/javascript" src="addon/fold/foldcode.js"></script>
+        <script type="text/javascript" src="addon/fold/foldgutter.js"></script>
+        <script type="text/javascript" src="addon/fold/brace-fold.js"></script>
+        <script type="text/javascript" src="addon/fold/xml-fold.js"></script>
+        <script type="text/javascript" src="addon/fold/indent-fold.js"></script>
+        <script type="text/javascript" src="addon/fold/markdown-fold.js"></script>
+        <script type="text/javascript" src="addon/fold/comment-fold.js"></script>
+        <script type="text/javascript" src="common/javascript/javascript.js"></script>
+        <script type="text/javascript" src="common/js/jquery-3.1.0.min.js"></script>
+        <script type="text/javascript" src="common/js/slick.min.js"></script>
+        <script type="text/javascript" src="common/js/structure.js"></script>
+        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+        <style type="text/css">.CodeMirror {border-top: 1px solid  black; border-bottom: 1px solid black;}</style>
+    </head>
+    <body onload="loadScreen()", oncopy="return false", onpaste="return false", oncontextmenu="return false">
+        <div id="container">
+            <div id="header">
+                <table>
+                    <!-- 検証スタイル '2' -->
+                    <td><h2>Code Editor -JavaScript-</h2></td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td><br>
+                        <h2>長テーブルのうなぎ屋</h2>
+                    </td>
+                </table>
+                <div style="float: right; margin-right: 100px">
+                    <h3 id="result">経過時間：</h3><input type="text" id="durationTime" disabled />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="js_menu.html" class="wide-btn" id="backmenu-btn">メニューへ戻る</a>
+                </div>
+            </div> 
+            <div id="left">
+                <!-- Question Area -->
+                <div id="left-box">
+                    <p>うなぎ屋にはとても大きい長テーブルがあり、テーブルの周りにｎ個の座席が配置されています。</p>
+                    <p>座席には、時計回りに１,２,．．．,ｎと番号が振られています。</p>
+                    <p>座席はテーブルの周りに配置されているので、座席番号ｎの座席と１の座席は隣接しています。</p><br>
+                    <p>今、ｍ個のグループの人達が座席に順番に座りに来ます。ｉ番目（１≦ｉ≦ ｍ）のグループの人数をａ＿ｉ人とします。</p>
+                    <p>彼らは、長テーブルに並んだ座席のうち、ある連続するａ＿ｉ個の座席に一斉に座ろうとします。</p><br>
+                    <p>ただ困ったことに、お客さんは気の短い方が多く、それらの座席のうち、いずれか一つでも既に先客が座られている座席があった</p>
+                    <p>場合、一人も座らずにグループ全員で怒って帰ってしまいます。</p><br>
+                    <p>入力では、ｉ番目のグループが座ろうとする連続した座席の位置は、整数ｂ＿ｉにより指定されます。</p>
+                    <p>ｉ番目のグループは、座席番号ｂ＿ｉの座席を始点として、そこから時計回りにａ＿ｉ個分の座席を座ろうとします。</p><br>
+                    <p>最後のグループが座りに来た後、無事に長テーブルの座席に着席出来ている人数を出力するコードを作成して下さい。</p><br>
+                    <h3>入力</h3><br>
+                    <p>入力はｍ＋１行からなります。</p><p>１行目にはｎ（座席数）とｍ（グループ数）で入力されます。</p>
+                    <p>続いて、ｉ＋１行目（１≦ｉ≦ ｍ）には２個の整数ａ＿ｉ（グループの人数）とｂ＿ｉ（着席開始座席番号）が入力されます。</p><br>
+                    <h3>出力</h3><br>
+                    <p>最後のグループが座りに来た後、無事に座席に着席できている人数を出力して下さい。</p>
+                    <p>では、挑戦して下さい。</p><br>
+                    <p>長テーブルは下図のように席が円を描いています。</p>
+                    <p>お客さんの座り方には最後の座席から０をまたいで何人か座ることも考えうるということです。</p>
+                    <p><img src="images/image01.png" alt="longtable" align="middle" /></p>
+                </div>
+                <div id="slide-btn">
+                    <div id="maru-image"><img src="images/maru.png" alt="maru" align="middle" /></div>
+                    <div id="batsu-image"><img src="images/batsu.png" alt="batsu" align="middle" /></div>
+                    <div id="one-image"><img src="images/one.png" alt="1" align="middle" /></div>
+                    <div id="two-image"><img src="images/two.png" alt="2" align="middle" /></div>
+                    <div id="three-image"><img src="images/three.png" alt="3" align="middle" /></div>
+                </div><br>                     
+                <!-- Text Area -->
+                <div id="code-main">エディット画面
+                    <div id="code_editor">
+                        <form><textarea id="code" name="code">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;script&gt;
+        // ↓ Input your code from here!! ↓
+        input_lines = gets.split(" ").map(&:to_i)
+        group = input_lines[1] #組数
+        
+        chairs=Array.new(input_lines[0] , false) #席数 falseデフォ 
+        
+        
+        while(gets)
+            input = $_.split(" ").map(&:to_i)
+             cnt=input[0] #人数
+             f_chair=input[1]-1 #組毎の先頭が座る席番 インデックスのため-1
+        
+        
+            if f_chair + cnt <= chairs.size then #座る席が0をまたぐか
+                   next if chairs[f_chair , cnt].any? #座ろうとした席が一つでも埋まっていれば退出してしまう   
+                   chairs[f_chair,cnt] = Array.new(cnt , true)
+        
+            else    #またぐ
+                    sippo = (f_chair+cnt)%chairs.size
+        
+                    next if chairs[0 , sippo].any? || chairs[f_chair..-1].any?
+                    chairs[0 , sippo] = Array.new(sippo , true)
+                    chairs[f_chair..-1] = Array.new(cnt-sippo , true)
+        
+            end
+        end
+        
+        
+        puts chairs.grep(true).size
+
+
+        // ↑ Input your code to here!! ↑
+    &lt;/script&gt;
+&lt;/html&gt;
+                        </textarea></form>
+                    </div>
+                    <div id="code-sub">
+                        <a href="#" class="wide-btn" id="makeCode" onclick="countDown();">コードを作成</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="#" class="wide-btn" id="remakeCode" onclick="fnReload();">最初からやり直す</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="#" class="wide-btn" id="runCode" onclick="updatePreview('js', '2');">コードを実行</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                    <input type="hidden" size="10" id="countTimer">
+                </div>
+                <!-- Text Area End -->
+            </div>
+            <div id="right">
+                <!-- Preview Area -->
+                <div id="preview-title">
+                    <h3>出力値</h3>
+                </div>
+                <iframe id="preview"></iframe>
+                <script>
+                    var delay;
+                    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+                        mode: "javascript",
+                        lineNumbers: true,
+                        matchBrackets: true,
+                        continueComments: "Enter",
+                        extraKeys: {"Ctrl-Q": function(cm){ cm.foldCode(cm.getCursor()); }},
+                        indentUnit: 4,
+                        indentWithTabs: true,
+                        enterMode: "keep",
+                        tabMode: "shift",
+                        theme: "3024-night",
+                        foldGutter: true,
+                        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+                    });
+                            
+                    editor.foldCode(CodeMirror.Pos(13,0));
+                </script>
+                <div id="clear"></div>
+                <!-- SuccessView Area -->
+                <div id="success-title">
+                    <h3>期待する出力値</h3>
+                </div>
+                <div id="successview">
+
+                </div>
+                <!-- Hint Area -->
+                <div id="hint-box">
+                    <b>ヒント</b><br>
+                    ・ノーヒントで頑張って下さい<br>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

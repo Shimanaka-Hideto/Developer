@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" keyword="CodeEditorJavaScript">
+        <title>Code Editor -JavaScript-</title>
+        <link rel="stylesheet" type="text/css" media="all" href="common/css/slick-theme.css">
+        <link rel="stylesheet" type="text/css" media="all" href="common/css/slick.css">
+        <link rel="stylesheet" type="text/css" media="all" href="lib/codemirror.css">
+        <link rel="stylesheet" type="text/css" media="all" href="common/css/index_style.css">
+        <link rel="stylesheet" type="text/css" media="all" href="addon/fold/foldgutter.css">
+        <link rel="stylesheet" type="text/css" media="all" href="theme/3024-night.css">
+        <script type="text/javascript" src="lib/codemirror.js"></script>
+        <script type="text/javascript" src="addon/edit/matchbrackets.js"></script>
+        <script type="text/javascript" src="addon/comment/continuecomment.js"></script>
+        <script type="text/javascript" src="addon/comment/comment.js"></script>
+        <script type="text/javascript" src="addon/fold/foldcode.js"></script>
+        <script type="text/javascript" src="addon/fold/foldgutter.js"></script>
+        <script type="text/javascript" src="addon/fold/brace-fold.js"></script>
+        <script type="text/javascript" src="addon/fold/xml-fold.js"></script>
+        <script type="text/javascript" src="addon/fold/indent-fold.js"></script>
+        <script type="text/javascript" src="addon/fold/markdown-fold.js"></script>
+        <script type="text/javascript" src="addon/fold/comment-fold.js"></script>
+        <script type="text/javascript" src="common/javascript/javascript.js"></script>
+        <script type="text/javascript" src="common/js/jquery-3.1.0.min.js"></script>
+        <script type="text/javascript" src="common/js/slick.min.js"></script>
+        <script type="text/javascript" src="common/js/structure.js"></script>
+        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+        <style type="text/css">.CodeMirror {border-top: 1px solid  black; border-bottom: 1px solid black;}</style>
+    </head>
+    <body onload="loadScreen()", oncopy="return false", onpaste="return false", oncontextmenu="return false">
+        <div id="container">
+            <div id="header">
+                <table>
+                    <!-- 比較スタイル '1' -->
+                    <td><h2>Code Editor -JavaScript-</h2></td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td><br>
+                        <h2>配列の要素をソートしよう</h2>
+                    </td>
+                </table>
+                <div style="float: right; margin-right: 100px">
+                    <h3 id="result">経過時間：</h3><input type="text" id="durationTime" disabled />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="js_menu.html" class="wide-btn" id="backmenu-btn">メニューへ戻る</a>
+                </div>
+            </div> 
+            <div id="left">
+                <!-- Question Area -->
+                <div id="left-box">
+                    <p>期待する出力値の結果になるように、コードを作成して下さい。</p>
+                    <p>初めに配列の要素を半角スペース刻みで表示します。改行後、配列の要素を昇順ソートして、半角スペース刻みで表示します。</p>
+                    <p>改行後、配列の要素を降順ソートして、半角スペース刻みで表示して下さい。</p>
+                    <p>但し、各配列要素の最後の数字の後ろには半角スペースを入れないで下さい。</p>
+                    <p>では、挑戦して下さい。</p>
+                </div>
+                <div id="slide-btn">
+                    <div id="maru-image"><img src="images/maru.png" alt="maru" align="middle" /></div>
+                    <div id="batsu-image"><img src="images/batsu.png" alt="batsu" align="middle" /></div>
+                    <div id="one-image"><img src="images/one.png" alt="1" align="middle" /></div>
+                    <div id="two-image"><img src="images/two.png" alt="2" align="middle" /></div>
+                    <div id="three-image"><img src="images/three.png" alt="3" align="middle" /></div>
+                </div><br>                    
+                <!-- Text Area -->
+                <div id="code-main">エディット画面
+                    <div id="code_editor">
+                        <form><textarea id="code" name="code">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;script&gt;
+        // ↓ Input your code from here!! ↓
+
+
+        
+        // ↑ Input your code to here!! ↑
+    &lt;/script&gt;
+&lt;/html&gt;
+                        </textarea></form>
+                    </div>
+                    <div id="code-sub">
+                        <a href="#" class="wide-btn" id="makeCode" onclick="countDown();">コードを作成</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="#" class="wide-btn" id="remakeCode" onclick="fnReload();">最初からやり直す</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="#" class="wide-btn" id="runCode" onclick="updatePreview('js', '1');">コードを実行</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                    <input type="hidden" size="10" id="countTimer">
+                </div>
+                <!-- Text Area End -->
+            </div>
+            <div id="right">
+                <!-- Preview Area -->
+                <div id="preview-title">
+                    <h3>出力値</h3>
+                </div>
+                <iframe id="preview"></iframe>
+                <script>
+                    var delay;
+                    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+                        mode: "javascript",
+                        lineNumbers: true,
+                        matchBrackets: true,
+                        continueComments: "Enter",
+                        extraKeys: {"Ctrl-Q": function(cm){ cm.foldCode(cm.getCursor()); }},
+                        indentUnit: 4,
+                        indentWithTabs: true,
+                        enterMode: "keep",
+                        tabMode: "shift",
+                        theme: "3024-night",
+                        foldGutter: true,
+                        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+                    });
+                            
+                    editor.foldCode(CodeMirror.Pos(13,0));
+                </script>
+                <div id="clear"></div>
+                <!-- SuccessView Area -->
+                <div id="success-title">
+                    <h3>期待する出力値</h3>
+                </div>
+                <div id="successview">
+                    ソート前の配列の要素<br>
+                    8 33 14 82 47 65 10 77 29 58 6 24 61 95<br>
+                    昇順ソート後の配列の要素<br>
+                    6 8 10 14 24 29 33 47 58 61 65 77 82 95<br>
+                    降順ソート後の配列の要素<br>
+                    95 82 77 65 61 58 47 33 29 24 14 10 8 6
+                </div>
+                <!-- Hint Area -->
+                <div id="hint-box">
+                    <b>ヒント</b><br>
+                    ・バブルソートとは隣接要素を比較し大小逆なら入替える作業を、全要素の順序が正しくなるまで繰返すアルゴリズムです。<br>
+                    <b>参考（ソートの種類）</b><br>
+                    バブルソートの他に、シェーカーソート、コムソート、ノームソート、選択ソート、挿入ソート、シェルソート、<br>
+                    クイックソート、バケットソート、基数ソート、ヒープソート、マージソートなどがあります。<br>
+                    それぞれ長所、短所があるので状況によって使い分けると良いでしょう。
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

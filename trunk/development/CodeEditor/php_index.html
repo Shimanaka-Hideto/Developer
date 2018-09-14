@@ -3,92 +3,149 @@
     <head>
         <meta charset="UTF-8" keyword="CodeEditorPHP">
         <title>Code Editor -PHP-</title>
-        <link rel="stylesheet" href="lib/codemirror.css">
-        <link rel="stylesheet" href="common/css/index.css">
-        <link rel="stylesheet" href="addon/fold/foldgutter.css">
-        <link rel="stylesheet" href="theme/3024-night.css">
-        <script src="lib/codemirror.js"></script>
-        <script src="addon/edit/matchbrackets.js"></script>
-        <script src="addon/comment/continuecomment.js"></script>
-        <script src="addon/comment/comment.js"></script>
-        <script src="addon/fold/foldcode.js"></script>
-        <script src="addon/fold/foldgutter.js"></script>
-        <script src="addon/fold/brace-fold.js"></script>
-        <script src="addon/fold/xml-fold.js"></script>
-        <script src="addon/fold/indent-fold.js"></script>
-        <script src="addon/fold/markdown-fold.js"></script>
-        <script src="addon/fold/comment-fold.js"></script>
-        <script src="common/javascript/javascript.js"></script>
-        <script src="common/htmlmixed/htmlmixed.js"></script>
-        <script src="common/xml/xml.js"></script>
-        <script src="common/javascript/javascript.js"></script>
-        <script src="common/css/css.js"></script>
-        <script src="common/clike/clike.js"></script>
-        <script src="common/js/php.js"></script>
-        <script src="common/js/jquery.min.js"></script>
-        <script src="common/js/jquery-runpark.js"></script>
+        <link rel="stylesheet" type="text/css" media="all" href="common/css/slick-theme.css">
+        <link rel="stylesheet" type="text/css" media="all" href="common/css/slick.css">
+        <link rel="stylesheet" type="text/css" media="all" href="lib/codemirror.css">
+        <link rel="stylesheet" type="text/css" media="all" href="common/css/index_style.css">
+        <link rel="stylesheet" type="text/css" media="all" href="addon/fold/foldgutter.css">
+        <link rel="stylesheet" type="text/css" media="all" href="theme/3024-night.css">
+        <style>
+            ul {list-style-type: none;}
+            li {display: inline-block;}
+        </style>
+        <script type="text/javascript" src="lib/codemirror.js"></script>
+        <script type="text/javascript" src="addon/edit/matchbrackets.js"></script>
+        <script type="text/javascript" src="addon/comment/continuecomment.js"></script>
+        <script type="text/javascript" src="addon/comment/comment.js"></script>
+        <script type="text/javascript" src="addon/fold/foldcode.js"></script>
+        <script type="text/javascript" src="addon/fold/foldgutter.js"></script>
+        <script type="text/javascript" src="addon/fold/brace-fold.js"></script>
+        <script type="text/javascript" src="addon/fold/xml-fold.js"></script>
+        <script type="text/javascript" src="addon/fold/indent-fold.js"></script>
+        <script type="text/javascript" src="addon/fold/markdown-fold.js"></script>
+        <script type="text/javascript" src="addon/fold/comment-fold.js"></script>
+        <script type="text/javascript" src="common/javascript/javascript.js"></script>
+        <script type="text/javascript" src="common/htmlmixed/htmlmixed.js"></script>
+        <script type="text/javascript" src="common/xml/xml.js"></script>
+        <script type="text/javascript" src="common/js/php.js"></script>
+        <script type="text/javascript" src="common/js/jquery-3.1.0.min.js"></script>
+        <script type="text/javascript" src="common/js/slick.min.js"></script>
+        <script type="text/javascript" src="common/js/jquery-runpark.js"></script>
+        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
         <style type="text/css">.CodeMirror {border-top: 1px solid  black; border-bottom: 1px solid black;}</style>
     </head>
-    <header><h2>Code Editor -PHP-</h2>
-        <h3>配列の要素をソートしよう</h3>
-        期待する出力値の結果になるように、下記のコードに関数を追加して下さい。<br>
-        初めに配列の要素を表示し、次に昇順ソートして表示します。最後に降順ソートして表示して下さい。<br>
-        ソースコードを入力後、右の実行ボタンを押してください。<br>
-        （PHPにはソートの関数がありますが、今回は理解力を付けるために自前で作成しましょう）
-    </header>
-    <body>
+    <body onload="loadScreen()">
         <div id="container">
-            <section id="left">
+            <div id="header">
+                <table>
+                    <td><h2>Code Editor -PHP-</h2><h3>配列の要素をソートしよう</h3></td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td>期待する出力値の結果になるように、下記のコードに関数を追加して下さい。<br>
+                    初めに配列の要素を表示し、次に昇順ソートして表示します。最後に降順ソートして表示して下さい。<br>
+                    ソースコードを入力後、右の実行ボタンを押してください。<br>
+                    （PHPにはソートの関数がありますが、今回は理解力を付けるために自前で作成しましょう）</td>
+                </table>
+            </div>
+            <div id="left">
+                <!-- Slide Area -->
+                <div id="slide-main">
+                    <ul class="slider">
+                        <li><a href="#"><img src="images/slide_js/lesson01_slide01.jpg" alt="slide01" align="middle" /></a></li>
+                        <li><a href="#"><img src="images/slide_js/lesson01_slide02.jpg" alt="slide02" align="middle" /></a></li>
+                        <li><a href="#"><img src="images/slide_js/lesson01_slide03.jpg" alt="slide03" align="middle" /></a></li>
+                        <li><a href="#"><img src="images/slide_js/lesson01_slide04.jpg" alt="slide04" align="middle" /></a></li>
+                        <li><a href="#"><img src="images/slide_js/lesson01_slide05.jpg" alt="slide05" align="middle" /></a></li>
+                        <li><a href="#"><img src="images/slide_js/lesson01_slide06.jpg" alt="slide06" align="middle" /></a></li>
+                        <li><a href="#"><img src="images/slide_js/lesson01_slide07.jpg" alt="slide07" align="middle" /></a></li>
+                        <li><a href="#"><img src="images/slide_js/lesson01_slide08.jpg" alt="slide08" align="middle" /></a></li>
+                        <li><a href="#"><img src="images/slide_js/lesson01_slide09.jpg" alt="slide09" align="middle" /></a></li>
+                        <li><a href="#"><img src="images/slide_js/lesson01_slide10.jpg" alt="slide10" align="middle" /></a></li>
+                        <li><a href="#"><img src="images/slide_js/lesson01_slide11.jpg" alt="slide11" align="middle" /></a></li>
+                    </ul>
+                </div>
+                <div id="slide-btn">
+                <a href="#" class="code-btn" id="reverse-start-btn" title="最初へ戻る">
+                    <i class="fas fa-fast-backward animated-hover"></i>
+                </a>&nbsp;&nbsp;
+                <a href="#" class="code-btn" id="reverse-btn" title="前へ戻る">
+                    <i class="fas fa-step-backward animated-hover"></i>
+                </a>&nbsp;&nbsp;
+                <a href="#" class="code-btn" id="forward-btn" title="次へ進む">
+                    <i class="fas fa-step-forward animated-hover"></i>
+                </a>&nbsp;&nbsp;
+                <a href="#" class="code-btn" id="forward-last-btn" title="最後へ進む">
+                    <i class="fas fa-fast-forward animated-hover"></i>
+                </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div id="maru-image"><img src="images/maru.png" alt="maru" align="middle" /></div>
+                    <div id="batsu-image"><img src="images/batsu.png" alt="maru" align="middle" /></div>
+                </div>
+                <script>
+                    $(".slider").slick({
+                        accessibility: false,
+                        arrows: false,
+                        focusOnSelect: true,
+                        infinite: false
+                    });
+                    $('.slider').on('afterChange', function() {
+                        nowSlide = ($('.slider').slick('slickCurrentSlide'));
+                        window.sessionStorage.setItem(['nowSlide'], [nowSlide]);
+                    })
+                    $("#forward-btn").on('click', function(){
+                        $(".slider").slick('slickNext');
+                    });
+                    $("#reverse-btn").on('click', function(){
+                        $(".slider").slick('slickPrev');
+                    });
+                    $("#reverse-start-btn").on('click', function(){
+                        $(".slider").slick('slickGoTo', 0);
+                    });
+                    $("#forward-last-btn").on('click', function(){
+                        $(".slider").slick('slickGoTo', 10);
+                    });
+                </script>  
                 <!-- Text Area -->
-                <div id="title_editor">エディット画面</div>
-                <div id="code_editor">
-                <form><textarea id="code" name="code" onkeyup="(function(ev){
-                    var textarea = ev.target ||  ev.srcElement;
-                    var value = textarea.value;
-                    var lines = 1;
-                    for (var i = 0, l = value.length; i < l; i++){
-                        if (value.charAt(i) == '\n') lines++;
-                    }
-                    textarea.setAttribute('rows', lines);
-                })(event)">
-<?php
+                <div id="code-main">エディット画面
+                    <div id="code_editor">
+                        <form><textarea id="code" name="code">
+&lt;?php
     // 配列の要素を設定する
     $arr = array(8, 33, 14, 82, 47, 65, 10, 77, 29, 58, 6, 24, 61, 95);
     // 配列の要素を表示する
-    echo "ソート前の配列の要素" . "<br>";
+    echo "ソート前の配列の要素" . "&lt;br&gt;";
     result_view($arr);
     // 表示用の関数
     function result_view($arr){
         for($arr as $result){
             echo $result . " ";
         }
-        echo "<br>";
+        echo "&lt;br&gt;";
     }
-    // ↓ your code enter!! ↓
+    // ↓ Input your code from here!! ↓
+
     // 昇順ソートした配列を表示する
-    echo "昇順ソート後の配列の要素" . "<br>";
+    echo "昇順ソート後の配列の要素" . "&lt;br&gt;";
     bubbleSort($arr, "asc");
     result_view($arr);
     // 降順ソートした配列を表示する
-    echo "降順ソート後の配列の要素" . "<br>";
+    echo "降順ソート後の配列の要素" . "&lt;br&gt;";
     bubbleSort($arr, "desc");
     result_view($arr);
 
     // ソートをする
     function bubbleSort($arr, $method){
         if($method == "asc"){
-            for($i = 0; $i < $arr.length; $i++){
-                for($j = 0; $j < $arr.length - 1 - $i; $j++){
+            for($i = 0; $i &lt; $arr.length; $i++){
+                for($j = 0; $j &lt; $arr.length - 1 - $i; $j++){
                     // 昇順ソート
                     if($method == "asc"){
-                        if($arr[$j] > $arr[$j + 1]){
+                        if($arr[$j] &gt; $arr[$j + 1]){
                             $temp = $arr[j];
                             $arr[$j] = $arr[$j + 1];
                             $arr[$j + 1] = $temp;
                         }
                     } elseif($method == "desc"){
                         // 降順ソート
-                        if($arr[$j] < $arr[$j + 1]){
+                        if($arr[$j] &lt; $arr[$j + 1]){
                             $temp = $arr[j];
                             $arr[$j] = $arr[$j + 1];
                             $arr[$j + 1] = $temp;
@@ -101,20 +158,24 @@
         }
     }
     return $arr;
-?>
-                </textarea></form></div>
-                <!-- Text Area End -->
-                <div id="hint-box">
-                    <input type="submit" value="実行" style="width: 100px" onclick="$('#code').runPark('#dst')"><br><br>    
-                    <b>ヒント</b><br>
-                    ・バブルソートとは隣接要素を比較し大小逆なら入替える作業を、全要素の順序が正しくなるまで繰返すアルゴリズムです。<br>
-                    <b>参考（ソートの種類）</b><br>
-                    バブルソートの他に、シェーカーソート、コムソート、ノームソート、選択ソート、挿入ソート、シェルソート、<br>
-                    クイックソート、バケットソート、基数ソート、ヒープソート、マージソートなどがあります。<br>
-                    それぞれ長所、短所があるので状況によって使い分けると良いでしょう。
+
+    // ↑ Input your code to here!! ↑
+?&gt;
+                        </textarea></form>
+                    </div>
+                    <div id="code-sub">
+                        <a href="" class="code-btn" onclick="fnReload();" title="最初からやり直す">
+                            <i class="fas fa-reply animated-hover"></i>
+                        </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="#" class="code-btn" onclick="updatePreview();" title="コードを実行">
+                                <i class="fas fa-caret-square-right animated-hover"></i>
+                        </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
                 </div>
-            </section>
-            <div id="preview-container">
+                <!-- Text Area End -->
+            </div>
+            <div id="right">
+                <!-- Preview Area -->
                 <div id="preview-title">
                     <h3>出力値</h3>
                 </div>
@@ -140,10 +201,46 @@
                     });
 
                     editor.foldCode(CodeMirror.Pos(13,0));
+
+                    function updatePreview() {   
+                        var previewFrame = document.getElementById('preview');
+                        var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
+                        preview.open();
+                        preview.write(editor.getValue());
+                        preview.close();
+                        var previewBody = preview.getElementsByTagName('body');
+                        var ans = previewBody[0].innerText;
+                        isSuccess(ans);
+                    }
+                    function isSuccess(ans) {
+                        var correct = document.getElementById('successview').innerText;
+                        if (ans === correct) {
+                            document.getElementById("maru-image").style.display ="block";
+                            timer();
+                        } else {
+                            document.getElementById("batsu-image").style.display ="block";
+                            timer();
+                        }
+                    }
+                    function timer() {
+                        timerId = setTimeout(vanishImage, 3000);
+                    }
+                    function vanishImage() {
+                        document.getElementById("maru-image").style.display = "none";
+                        document.getElementById("batsu-image").style.display = "none";
+                    }
+                    function fnReload() {
+                        window.location.reload();
+                    }
+                        
                 </script>
                 <div id ="dst" class="evalout"></div>
-                <div id="succesview">
+                <div id="clear"></div>
+                <!-- SuccessView Area -->
+                <div id="success-title">
                     <h3>期待する出力値</h3>
+                </div>
+                <div id="successview">
                     ソート前の配列の要素<br>
                     8 33 14 82 47 65 10 77 29 58 6 24 61 95 <br>
                     昇順ソート後の配列の要素<br>
@@ -151,7 +248,25 @@
                     降順ソート後の配列の要素<br>
                     95 82 77 65 61 58 47 33 29 24 14 10 8 6 <br>
                 </div>
+                <!-- Hint ARea -->
+                <div id="hint-box">   
+                    <b>ヒント</b><br>
+                    ・バブルソートとは隣接要素を比較し大小逆なら入替える作業を、全要素の順序が正しくなるまで繰返すアルゴリズムです。<br>
+                    <b>参考（ソートの種類）</b><br>
+                    バブルソートの他に、シェーカーソート、コムソート、ノームソート、選択ソート、挿入ソート、シェルソート、<br>
+                    クイックソート、バケットソート、基数ソート、ヒープソート、マージソートなどがあります。<br>
+                    それぞれ長所、短所があるので状況によって使い分けると良いでしょう。
+                </div>
             </div>
         </div>
+        <script>
+            function loadScreen() {
+                var nowSlide = window.sessionStorage.getItem(['nowSlide']);
+                if (nowSlide == null) {
+                    nowSlide = 0;
+                }
+                $('.slider').slick('slickGoTo', nowSlide);
+            }
+        </script>
     </body>
 </html>

@@ -27,22 +27,16 @@
         <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
         <style type="text/css">.CodeMirror {border-top: 1px solid  black; border-bottom: 1px solid black;}</style>
     </head>
-    <body onload="loadScreen()", oncopy="return false", onpaste="return false", oncontextmenu="return false">
+    <body onload="loadScreen()">
         <div id="container">
             <div id="header">
                 <table>
-                    <!-- 比較スタイル '1' -->
                     <td><h2>Code Editor -JavaScript-</h2><h3>変数に文字や数字を代入して表示させよう</h3></td>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                     <td>下記のコードでいくつか間違いがあります。期待する出力値を参考に、修正して下さい。<br>
                     年齢は現在の年を取得後、誕生年から算出します。年齢が未入力や数字以外と18歳未満、66歳以上の場合は<br>
                     『○○さんの年齢は不明です。』と表示するようにしましょう。<br>
                     （今回は誕生月については考慮しなくても良いとします）</td>
-                    <td><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <h3 id="result">経過時間：</h3><input type="text" id="durationTime" disabled />
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="js_menu.html" class="wide-btn" id="backmenu-btn">メニューへ戻る</a>
-                    </td>
                 </table>
             </div> 
             <div id="left">
@@ -76,10 +70,7 @@
                         <i class="fas fa-fast-forward animated-hover"></i>
                     </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <div id="maru-image"><img src="images/maru.png" alt="maru" align="middle" /></div>
-                    <div id="batsu-image"><img src="images/batsu.png" alt="batsu" align="middle" /></div>
-                    <div id="one-image"><img src="images/one.png" alt="1" align="middle" /></div>
-                    <div id="two-image"><img src="images/two.png" alt="2" align="middle" /></div>
-                    <div id="three-image"><img src="images/three.png" alt="3" align="middle" /></div>
+                    <div id="batsu-image"><img src="images/batsu.png" alt="maru" align="middle" /></div>
                 </div>
                 <script>
                     var nowSlide = 0;
@@ -119,29 +110,27 @@
         // ↓ Input your code from here!! ↓
 
         // 名前の変数
-        var name = テスト太郎
+        var name = "テスト太郎";
         // 誕生年の変数
-        var birth = "1970";
+        var birth = 1970;
         // 勤務先の変数
-        var company = "JavaScript株式会社";; 
+        var company = "JavaScript株式会社"; 
         // 役職の変数
-        ver position = "課長";
+        var position = "課長";
         // 今年の年取得
         var now = new Date();
         var year = now.getFullYear();
-        // 正規表現
-        var pattern = /^([1-9]\d*|0)$/;
         var str1 = name + "さんの年齢は不明です。";
-        if (pattern.test(birth)) {
+        if (!isNaN(birth) && typeof birth == "number"){
             var age = year - birth;
-            if(age >  && age < ){
+            if(age > 18 || age < 66){
                 str1 = name + "さんの年齢は" + age + "歳です。";
             }
         }
         var str2 = company + "の" + position + "です。";
-        document.write(str2);
-        document.write("<br>");
         document.write(str1);
+        document.write("<br>");
+        document.write(str2);
 
         // ↑ Input your code to here!! ↑
     &lt;/script&gt;
@@ -149,14 +138,13 @@
                         </textarea></form>
                     </div>
                     <div id="code-sub">
-                        <a href="#" class="wide-btn" id="makeCode" onclick="countDown();">コードを作成</a>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="#" class="wide-btn" id="remakeCode" onclick="fnReload();">最初からやり直す</a>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="#" class="wide-btn" id="runCode" onclick="updatePreview('js', '1');">コードを実行</a>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="#" class="code-btn" onclick="fnReload();" title="最初からやり直す">
+                            <i class="fas fa-reply animated-hover"></i>
+                        </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="#" class="code-btn" onclick="updatePreview();" title="コードを実行">
+                            <i class="fas fa-caret-square-right animated-hover"></i>
+                        </a>&nbsp;&nbsp;&nbsp;&nbsp;
                     </div>
-                    <input type="hidden" size="10" id="countTimer">
                 </div>
                 <!-- Text Area End -->
             </div>
@@ -202,8 +190,8 @@
                     ・論理演算子 ＆＆ は演算対象の両方が true の時は true を、それ以外の時は false を返す<br>
                     ・論理演算子 || は 演算対象の両方が false の時は false を、それ以外の時は true を返す<br>
                     <b>参考</b><br>
-                    正規表現・・・０以上の整数のみ → /^([1-9]\d*|0)$/<br>
-                    test()関数・・・()内の引数を正規表現で判別し、boolean型で返します<br>
+                    isNaN()関数・・・引数が数値ではないことをチェックします<br>
+                    typeof演算子・・・対象となる値のデータ型を表す文字列を返します<br>
                 </div>
             </div>
         </div>

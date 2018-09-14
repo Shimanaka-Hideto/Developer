@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" keyword="CodeEditorJavaScript">
+        <title>Code Editor -JavaScript-</title>
+        <link rel="stylesheet" type="text/css" media="all" href="common/css/slick-theme.css">
+        <link rel="stylesheet" type="text/css" media="all" href="common/css/slick.css">
+        <link rel="stylesheet" type="text/css" media="all" href="lib/codemirror.css">
+        <link rel="stylesheet" type="text/css" media="all" href="common/css/index_style.css">
+        <link rel="stylesheet" type="text/css" media="all" href="addon/fold/foldgutter.css">
+        <link rel="stylesheet" type="text/css" media="all" href="theme/3024-night.css">
+        <script type="text/javascript" src="lib/codemirror.js"></script>
+        <script type="text/javascript" src="addon/edit/matchbrackets.js"></script>
+        <script type="text/javascript" src="addon/comment/continuecomment.js"></script>
+        <script type="text/javascript" src="addon/comment/comment.js"></script>
+        <script type="text/javascript" src="addon/fold/foldcode.js"></script>
+        <script type="text/javascript" src="addon/fold/foldgutter.js"></script>
+        <script type="text/javascript" src="addon/fold/brace-fold.js"></script>
+        <script type="text/javascript" src="addon/fold/xml-fold.js"></script>
+        <script type="text/javascript" src="addon/fold/indent-fold.js"></script>
+        <script type="text/javascript" src="addon/fold/markdown-fold.js"></script>
+        <script type="text/javascript" src="addon/fold/comment-fold.js"></script>
+        <script type="text/javascript" src="common/javascript/javascript.js"></script>
+        <script type="text/javascript" src="common/js/jquery-3.1.0.min.js"></script>
+        <script type="text/javascript" src="common/js/slick.min.js"></script>
+        <script type="text/javascript" src="common/js/structure.js"></script>
+        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+        <style type="text/css">.CodeMirror {border-top: 1px solid  black; border-bottom: 1px solid black;}</style>
+    </head>
+    <body onload="loadScreen()", oncopy="return false", onpaste="return false", oncontextmenu="return false">
+        <div id="container">
+            <div id="header">
+                <table>
+                    <!-- 比較スタイル '1' -->
+                    <td><h2>Code Editor -JavaScript-</h2></td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td><br>
+                        <h2>FizzBuzz問題をやってみよう</h2>
+                    </td>
+                </table>
+                <div style="float: right; margin-right: 100px">
+                    <h3 id="result">経過時間：</h3><input type="text" id="durationTime" disabled />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="js_menu.html" class="wide-btn" id="backmenu-btn">メニューへ戻る</a>
+                </div>
+            </div> 
+            <div id="left">
+                <!-- Question Area -->
+                <div id="left-box">
+                    <p>1～100までの数字を表示し、３で割り切れたら → Fizz! と表示し、５で割り切れたら → Buzz!と表示して下さい。</p>
+                    <p>また、３でも５でも割り切れる場合は → FizzBuzz!!と表示して下さい。それ以外は → (その数字)と表示して下さい。</p>
+                    <p>表示方法は期待する出力値を参考にして下さい。（最後の100も改行して下さい）</p>
+                    <p>なるべく短いステップで、短い入力数で作成して下さい。</p>
+                    <p>では、挑戦して下さい。</p>
+                </div>
+                <div id="slide-btn">
+                    <div id="maru-image"><img src="images/maru.png" alt="maru" align="middle" /></div>
+                    <div id="batsu-image"><img src="images/batsu.png" alt="batsu" align="middle" /></div>
+                    <div id="one-image"><img src="images/one.png" alt="1" align="middle" /></div>
+                    <div id="two-image"><img src="images/two.png" alt="2" align="middle" /></div>
+                    <div id="three-image"><img src="images/three.png" alt="3" align="middle" /></div>
+                </div><br>                    
+                <!-- Text Area -->
+                <div id="code-main">エディット画面
+                    <div id="code_editor">
+                        <form><textarea id="code" name="code">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;script&gt;
+        // ↓ Input your code from here!! ↓
+
+        for (var i = 1; i < 101; i++) {
+            document.write(i + " → " + (i % 3 == 0 ? (i % 5 == 0 ? 'FizzBuzz!!' : 'Fizz!') : (i % 5 == 0 ? 'Buzz!' : i)) + "<br>");
+        }
+
+        // ↑ Input your code to here!! ↑
+    &lt;/script&gt;
+&lt;/html&gt;
+                        </textarea></form>
+                    </div>
+                    <div id="code-sub">
+                        <a href="#" class="wide-btn" id="makeCode" onclick="countDown();">コードを作成</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="#" class="wide-btn" id="remakeCode" onclick="fnReload();">最初からやり直す</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="#" class="wide-btn" id="runCode" onclick="updatePreview('js', '1');">コードを実行</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                    <input type="hidden" size="10" id="countTimer">
+                </div>
+                <!-- Text Area End -->
+            </div>
+            <div id="right">
+                <!-- Preview Area -->
+                <div id="preview-title">
+                    <h3>出力値</h3>
+                </div>
+                <iframe id="preview"></iframe>
+                <script>
+                    var delay;
+                    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+                        mode: "javascript",
+                        lineNumbers: true,
+                        matchBrackets: true,
+                        continueComments: "Enter",
+                        extraKeys: {"Ctrl-Q": function(cm){ cm.foldCode(cm.getCursor()); }},
+                        indentUnit: 4,
+                        indentWithTabs: true,
+                        enterMode: "keep",
+                        tabMode: "shift",
+                        theme: "3024-night",
+                        foldGutter: true,
+                        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+                    });
+                            
+                    editor.foldCode(CodeMirror.Pos(13,0));
+                </script>
+                <div id="clear"></div>
+                <!-- SuccessView Area -->
+                <div id="success-title">
+                    <h3>期待する出力値</h3>
+                </div>
+                <div id="successview">
+                    1 → 1<br>
+                    2 → 2<br>
+                    3 → Fizz!<br>
+                    4 → 4<br>
+                    5 → Buzz!<br>
+                    6 → Fizz!<br>
+                    7 → 7<br>
+                    8 → 8<br>
+                    9 → Fizz!<br>
+                    10 → Buzz!<br>
+                    11 → 11<br>
+                    12 → Fizz!<br>
+                    13 → 13<br>
+                    14 → 14<br>
+                    15 → FizzBuzz!!<br>
+                    16 → 16<br>
+                    17 → 17<br>
+                    18 → Fizz!<br>
+                    19 → 19<br>
+                    20 → Buzz!<br>
+                    21 → Fizz!<br>
+                    22 → 22<br>
+                    23 → 23<br>
+                    24 → Fizz!<br>
+                    25 → Buzz!<br>
+                    26 → 26<br>
+                    27 → Fizz!<br>
+                    28 → 28<br>
+                    29 → 29<br>
+                    30 → FizzBuzz!!<br>
+                    31 → 31<br>
+                    32 → 32<br>
+                    33 → Fizz!<br>
+                    34 → 34<br>
+                    35 → Buzz!<br>
+                    36 → Fizz!<br>
+                    37 → 37<br>
+                    38 → 38<br>
+                    39 → Fizz!<br>
+                    40 → Buzz!<br>
+                    41 → 41<br>
+                    42 → Fizz!<br>
+                    43 → 43<br>
+                    44 → 44<br>
+                    45 → FizzBuzz!!<br>
+                    46 → 46<br>
+                    47 → 47<br>
+                    48 → Fizz!<br>
+                    49 → 49<br>
+                    50 → Buzz!<br>
+                    51 → Fizz!<br>
+                    52 → 52<br>
+                    53 → 53<br>
+                    54 → Fizz!<br>
+                    55 → Buzz!<br>
+                    56 → 56<br>
+                    57 → Fizz!<br>
+                    58 → 58<br>
+                    59 → 59<br>
+                    60 → FizzBuzz!!<br>
+                    61 → 61<br>
+                    62 → 62<br>
+                    63 → Fizz!<br>
+                    64 → 64<br>
+                    65 → Buzz!<br>
+                    66 → Fizz!<br>
+                    67 → 67<br>
+                    68 → 68<br>
+                    69 → Fizz!<br>
+                    70 → Buzz!<br>
+                    71 → 71<br>
+                    72 → Fizz!<br>
+                    73 → 73<br>
+                    74 → 74<br>
+                    75 → FizzBuzz!!<br>
+                    76 → 76<br>
+                    77 → 77<br>
+                    78 → Fizz!<br>
+                    79 → 79<br>
+                    80 → Buzz!<br>
+                    81 → Fizz!<br>
+                    82 → 82<br>
+                    83 → 83<br>
+                    84 → Fizz!<br>
+                    85 → Buzz!<br>
+                    86 → 86<br>
+                    87 → Fizz!<br>
+                    88 → 88<br>
+                    89 → 89<br>
+                    90 → FizzBuzz!!<br>
+                    91 → 91<br>
+                    92 → 92<br>
+                    93 → Fizz!<br>
+                    94 → 94<br>
+                    95 → Buzz!<br>
+                    96 → Fizz!<br>
+                    97 → 97<br>
+                    98 → 98<br>
+                    99 → Fizz!<br>
+                    100 → Buzz!<br>
+                </div>
+                <!-- Hint Area -->
+                <div id="hint-box">
+                    <b>ヒント</b><br>
+                    ・1～100までの数字はfor文かwhile文を使う<br>
+                    ・ループの中でFizzBuzzのルールで表示する<br>
+                    ・３で割り切れるなら Fizz!、５で割り切れるなら Buzz!、どちらでも割り切れるなら FizzBuzz!!、それ以外はその数<br>
+                    ・if文で条件を指定する時に無駄な演算をしないようにする<br>
+                    ・三項演算子を使うとかなりステップ数も入力コードも短くなる<br>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

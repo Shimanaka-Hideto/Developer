@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" keyword="CodeEditorJavaScript">
+        <title>Code Editor -JavaScript-</title>
+        <link rel="stylesheet" type="text/css" media="all" href="common/css/slick-theme.css">
+        <link rel="stylesheet" type="text/css" media="all" href="common/css/slick.css">
+        <link rel="stylesheet" type="text/css" media="all" href="lib/codemirror.css">
+        <link rel="stylesheet" type="text/css" media="all" href="common/css/index_style.css">
+        <link rel="stylesheet" type="text/css" media="all" href="addon/fold/foldgutter.css">
+        <link rel="stylesheet" type="text/css" media="all" href="theme/3024-night.css">
+        <script type="text/javascript" src="lib/codemirror.js"></script>
+        <script type="text/javascript" src="addon/edit/matchbrackets.js"></script>
+        <script type="text/javascript" src="addon/comment/continuecomment.js"></script>
+        <script type="text/javascript" src="addon/comment/comment.js"></script>
+        <script type="text/javascript" src="addon/fold/foldcode.js"></script>
+        <script type="text/javascript" src="addon/fold/foldgutter.js"></script>
+        <script type="text/javascript" src="addon/fold/brace-fold.js"></script>
+        <script type="text/javascript" src="addon/fold/xml-fold.js"></script>
+        <script type="text/javascript" src="addon/fold/indent-fold.js"></script>
+        <script type="text/javascript" src="addon/fold/markdown-fold.js"></script>
+        <script type="text/javascript" src="addon/fold/comment-fold.js"></script>
+        <script type="text/javascript" src="common/javascript/javascript.js"></script>
+        <script type="text/javascript" src="common/js/jquery-3.1.0.min.js"></script>
+        <script type="text/javascript" src="common/js/slick.min.js"></script>
+        <script type="text/javascript" src="common/js/structure.js"></script>
+        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+        <style type="text/css">.CodeMirror {border-top: 1px solid  black; border-bottom: 1px solid black;}</style>
+    </head>
+    <body onload="loadScreen()", oncopy="return false", onpaste="return false", oncontextmenu="return false">
+        <div id="container">
+            <div id="header">
+                <table>
+                    <!-- 検証スタイル '2' -->
+                    <td><h2>Code Editor -JavaScript-</h2></td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td><br>
+                        <h2>トランプを配ります</h2>
+                    </td>
+                </table>
+                <div style="float: right; margin-right: 100px">
+                    <h3 id="result">経過時間：</h3><input type="text" id="durationTime" disabled />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="js_menu.html" class="wide-btn" id="backmenu-btn">メニューへ戻る</a>
+                </div>
+            </div> 
+            <div id="left">
+                <!-- Question Area -->
+                <div id="left-box">
+                    <font color="red">関数名及び、プレイヤーの変数名、トランプの並びの変数名は変更しないで下さい。</font color>
+                    <p>トランプを配ります。あなたには２つの引数、「トランプを配る人数」と「トランプ」が渡されます。</p>
+                    <pre class="literal-block">
+例）
+3
+"123123123"
+                    </pre>
+                    <p>最初の3はプレイヤーの人数を示しています。</p>
+                    <p>"123123123"　はトランプの並びを示しています。あなたはこのなかのトランプを配っていかなければなりません。</p>
+                    <p>この場合、あなたのプログラムは</p>
+                    <p>{"111","222","333"}</p>
+                    <p>を返さなければなりません。</p>
+                    <p>"111"は一番めのプレイヤーが受け取るトランプです。
+                    "222"が２番目のプレイヤーが受け取るトランプです。
+                    "333"が２番目のプレイヤーが受け取るトランプです。</p>
+                    <p>ところが、以下のような場合もあります。</p>
+                    <pre class="literal-block">
+4
+"123123123"
+                    </pre>
+                    <p>すべてのプレイヤーは同じ数だけのトランプを受け取らなければなりません。</p>
+                    <p>この場合、あなたのプログラムは</p>
+                    <p>{"12","23","31","12"}</p>
+                    <p>を返さなければなりません。</p>
+                    <p>{"123","23","31","12"} は駄目です。</p>
+                    <p>では、以下にもうすこし例をのせます。</p>
+                    <pre class="literal-block">
+例１)
+6
+"012345012345012345"
+Returns: {"000", "111", "222", "333", "444", "555" }
+
+
+例２)
+4
+"111122223333"
+Returns: {"123", "123", "123", "123" }
+
+
+例３)
+1
+"012345012345012345"
+Returns: {"012345012345012345" }
+
+
+例４)
+6
+"01234"
+Returns: {"", "", "", "", "", "" }
+
+
+例５)
+2
+""
+Returns: {"", "" }
+                    </pre>
+                    <p>プレイヤー人数とトランプの並び順を引数に、出力例の様にReturns: {xxxx,xxxx}を返す関数を作成して下さい。</p>
+                    <p>では、挑戦して下さい。</p>
+                </div>
+                <div id="slide-btn">
+                    <div id="maru-image"><img src="images/maru.png" alt="maru" align="middle" /></div>
+                    <div id="batsu-image"><img src="images/batsu.png" alt="batsu" align="middle" /></div>
+                    <div id="one-image"><img src="images/one.png" alt="1" align="middle" /></div>
+                    <div id="two-image"><img src="images/two.png" alt="2" align="middle" /></div>
+                    <div id="three-image"><img src="images/three.png" alt="3" align="middle" /></div>
+                </div><br>                     
+                <!-- Text Area -->
+                <div id="code-main">エディット画面
+                    <div id="code_editor">
+                        <form><textarea id="code" name="code">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;script&gt;
+
+        // ↓ Input your code from here!! ↓
+
+
+        
+        // ↑ Input your code to here!! ↑
+        }
+    &lt;/script&gt;
+&lt;/html&gt;
+                        </textarea></form>
+                    </div>
+                    <div id="code-sub">
+                        <a href="#" class="wide-btn" id="makeCode" onclick="countDown();">コードを作成</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="#" class="wide-btn" id="remakeCode" onclick="fnReload();">最初からやり直す</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="#" class="wide-btn" id="runCode" onclick="updatePreview('js', '2');">コードを実行</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                    <input type="hidden" size="10" id="countTimer">
+                </div>
+                <!-- Text Area End -->
+            </div>
+            <div id="right">
+                <!-- Preview Area -->
+                <div id="preview-title">
+                    <h3>出力値</h3>
+                </div>
+                <iframe id="preview"></iframe>
+                <script>
+                    var delay;
+                    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+                        mode: "javascript",
+                        lineNumbers: true,
+                        matchBrackets: true,
+                        continueComments: "Enter",
+                        extraKeys: {"Ctrl-Q": function(cm){ cm.foldCode(cm.getCursor()); }},
+                        indentUnit: 4,
+                        indentWithTabs: true,
+                        enterMode: "keep",
+                        tabMode: "shift",
+                        theme: "3024-night",
+                        foldGutter: true,
+                        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+                    });
+                            
+                    editor.foldCode(CodeMirror.Pos(13,0));
+                </script>
+                <div id="clear"></div>
+                <!-- SuccessView Area -->
+                <div id="success-title">
+                    <h3>期待する出力値</h3>
+                </div>
+                <div id="successview">
+                    <table>
+                        <td>
+                            例１<br>
+                            入力値<br>
+                            5<br>
+                            "00112233445566778899"<br><br>
+                            出力値<br>
+                            {"0257", "0358", "1368", "1469", "2479"}
+                        </td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td>
+                            例２<br>
+                            入力値<br>
+                            6<br>
+                            "0123"<br><br>
+                            出力値<br>
+                            {"", "", "", "", "", ""}
+                        </td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td>
+                            例３<br>
+                            入力値<br>
+                            2<br>
+                            "11112222333344445555"<br><br>
+                            出力値<br>
+                            {"1122334455", "1122334455"}
+                        </td>
+                    </table>
+                </div>
+                <!-- Hint Area -->
+                <div id="hint-box">
+                    <b>ヒント</b><br>
+                    ・ノーヒントで頑張って下さい<br>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
