@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" keyword="CodeEditorJavaScript">
+        <title>Code Editor -JavaScript-</title>
+        <link rel="stylesheet" href="lib/codemirror.css">
+        <link rel="stylesheet" href="common/css/index.css">
+        <link rel="stylesheet" href="addon/fold/foldgutter.css">
+        <link rel="stylesheet" href="theme/3024-night.css">
+        <script src="lib/codemirror.js"></script>
+        <script src="addon/edit/matchbrackets.js"></script>
+        <script src="addon/comment/continuecomment.js"></script>
+        <script src="addon/comment/comment.js"></script>
+        <script src="addon/fold/foldcode.js"></script>
+        <script src="addon/fold/foldgutter.js"></script>
+        <script src="addon/fold/brace-fold.js"></script>
+        <script src="addon/fold/xml-fold.js"></script>
+        <script src="addon/fold/indent-fold.js"></script>
+        <script src="addon/fold/markdown-fold.js"></script>
+        <script src="addon/fold/comment-fold.js"></script>
+        <script src="common/javascript/javascript.js"></script>
+        <style type="text/css">.CodeMirror {border-top: 1px solid  black; border-bottom: 1px solid black;}</style>
+    </head>
+    <header>
+        <h2>Code Editor -JavaScript-</h2>
+        <h3>変数に文字や数字を代入して表示させよう</h3>
+        下記のコードでいくつか間違いがあります。期待する出力値を参考に、修正して下さい。<br>
+        年齢は現在の年を取得後、誕生年から算出します。年齢が未入力や数字以外と18歳未満、66歳以上の場合は<br>
+        『○○さんの年齢は不明です。』と表示するようにしましょう。<br>
+        （今回は誕生月については考慮しなくても良いとします）
+    </header>
+    <body>
+        <div id="container">
+            <section id="left">
+                <!-- Text Area -->
+                <div id="title_editor">エディット画面</div>
+                <form><textarea id="code" name="code">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;script&gt;
+        // ↓ your code enter!! ↓
+
+        // 名前の変数
+        var name = "テスト太郎"
+        // 誕生年の変数
+        var birth = "1970";
+        // 勤務先の変数
+        var company = JavaScript株式会社;
+        // 役職の変数
+        var position = '課長';
+        // 今年の年取得
+        var now = new Date();
+        var year = now.getFullYear();
+        var str1 = name + "さんの年齢は不明です。";
+        if (!isNaN(birth) $$ typeof birth == "number"){
+            var age = birth - year;
+            if(age > 17 || age < 66){
+                str1 = name + "さんの年齢は" + age + "歳です。";
+            }
+        }
+        var str2 = company + "の" + pos + "です。";
+        document.write(str1);
+    &lt;/script&gt;
+    &lt;br&gt;
+    &lt;script&gt;
+        document.write(str2);
+    &lt;/script&gt;
+&lt;/html&gt;
+                </textarea></form>
+                <!-- Text Area End -->
+                <div id="hint-box">
+                    <b>ヒント</b><br>
+                    ・変数に代入する値で文字列は ""（ダブルクォーテーション）か ''（シングルクォーテーション）で囲む<br>
+                    ・行末には ；（セミコロン）を付ける<br>
+                    ・論理演算子 ＆＆ は演算対象の両方が true の時は true を、それ以外の時は false を返す<br>
+                    ・論理演算子 || は 演算対象の両方が false の時は false を、それ以外の時は true を返す<br>
+                    <b>参考</b><br>
+                    isNaN()関数・・・引数が数値ではないことをチェックします<br>
+                    typeof演算子・・・対象となる値のデータ型を表す文字列を返します<br>
+                </div>
+            </section>
+            <div id="preview-container">
+                <div id="preview-title">
+                    <h3>出力値</h3>
+                </div>
+                <iframe id="preview"></iframe>
+                <script>
+                    var delay;
+                    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+                        mode: "javascript",
+                        lineNumbers: true,
+                        matchBrackets: true,
+                        continueComments: "Enter",
+                        extraKeys: {"Ctrl-Q": function(cm){ cm.foldCode(cm.getCursor()); }},
+                        indentUnit: 4,
+                        indentWithTabs: true,
+                        enterMode: "keep",
+                        tabMode: "shift",
+                        theme: "3024-night",
+                        foldGutter: true,
+                        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+                    });
+
+                    editor.foldCode(CodeMirror.Pos(13,0));
+                    editor.on("change", function() {
+                        clearTimeout(delay);
+                        delay = setTimeout(updatePreview, 0);
+                    });
+                    
+                    function updatePreview() {
+                        var previewFrame = document.getElementById('preview');
+                        var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
+                        preview.open();
+                        preview.write(editor.getValue());
+                        preview.close();
+                    }
+                    setTimeout(updatePreview, 0);
+                    editor.save();
+                </script>
+                <div id="succesview">
+                    <h3>期待する出力値</h3>
+                    テスト太郎さんの年齢は48歳です。<br>
+                    JavaScript株式会社の部長です。
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

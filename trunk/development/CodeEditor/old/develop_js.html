@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" keyword="CodeEditorJavaScript">
+        <title>Code Editor -JavaScript-</title>
+        <link rel="stylesheet" type="text/css" media="all" href="lib/codemirror.css">
+        <link rel="stylesheet" type="text/css" media="all" href="common/css/index_design.css">
+        <link rel="stylesheet" type="text/css" media="all" href="addon/fold/foldgutter.css">
+        <link rel="stylesheet" type="text/css" media="all" href="theme/3024-night.css">
+        <link rel="stylesheet" type="text/css" media="all" href="common/css/viewer.min.css">
+        <style>
+            ul {list-style-type: none;}
+            li {display: inline-block;}
+        </style>
+        <script type="text/javascript" src="lib/codemirror.js"></script>
+        <script type="text/javascript" src="addon/edit/matchbrackets.js"></script>
+        <script type="text/javascript" src="addon/comment/continuecomment.js"></script>
+        <script type="text/javascript" src="addon/comment/comment.js"></script>
+        <script type="text/javascript" src="addon/fold/foldcode.js"></script>
+        <script type="text/javascript" src="addon/fold/foldgutter.js"></script>
+        <script type="text/javascript" src="addon/fold/brace-fold.js"></script>
+        <script type="text/javascript" src="addon/fold/xml-fold.js"></script>
+        <script type="text/javascript" src="addon/fold/indent-fold.js"></script>
+        <script type="text/javascript" src="addon/fold/markdown-fold.js"></script>
+        <script type="text/javascript" src="addon/fold/comment-fold.js"></script>
+        <script type="text/javascript" src="common/javascript/javascript.js"></script>
+        <script type="text/javascript" src="common/js/viewer.min.js"></script>
+        <script type="text/javascript" src="common/js/jquery-3.1.0.min.js"></script>
+        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+        <style type="text/css">.CodeMirror {border-top: 1px solid  black; border-bottom: 1px solid black;}</style>
+    </head>
+    <body>
+        <div id="container">
+            <div id="header">
+                <table>
+                    <td><h2>Code Editor -JavaScript-</h2><h3>変数に文字や数字を代入して表示させよう</h3></td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td>下記のコードでいくつか間違いがあります。期待する出力値を参考に、修正して下さい。<br>
+                    年齢は現在の年を取得後、誕生年から算出します。年齢が未入力や数字以外と18歳未満、66歳以上の場合は<br>
+                    『○○さんの年齢は不明です。』と表示するようにしましょう。<br>
+                    （今回は誕生月については考慮しなくても良いとします）</td>
+                </table>
+            </div> 
+            <div id="left">
+                <!-- Slide Area -->
+                <div id="slide-main">
+                    <ul id="images">
+                        <li><img src="images/slide_js/lesson01_slide01.jpg" alt="slide01" align="middle" /></li>
+                        <li><img src="images/slide_js/lesson01_slide02.jpg" alt="slide02" align="middle" style="display: none;" /></li>
+                        <li><img src="images/slide_js/lesson01_slide03.jpg" alt="slide03" align="middle" style="display: none;" /></li>
+                        <li><img src="images/slide_js/lesson01_slide04.jpg" alt="slide04" align="middle" style="display: none;" /></li>
+                        <li><img src="images/slide_js/lesson01_slide05.jpg" alt="slide05" align="middle" style="display: none;" /></li>
+                        <li><img src="images/slide_js/lesson01_slide06.jpg" alt="slide06" align="middle" style="display: none;" /></li>
+                        <li><img src="images/slide_js/lesson01_slide07.jpg" alt="slide07" align="middle" style="display: none;" /></li>
+                        <li><img src="images/slide_js/lesson01_slide08.jpg" alt="slide08" align="middle" style="display: none;" /></li>
+                        <li><img src="images/slide_js/lesson01_slide09.jpg" alt="slide09" align="middle" style="display: none;" /></li>
+                        <li><img src="images/slide_js/lesson01_slide10.jpg" alt="slide10" align="middle" style="display: none;" /></li>
+                        <li><img src="images/slide_js/lesson01_slide11.jpg" alt="slide11" align="middle" style="display: none;" /></li>
+                    </ul>
+                </div>
+                <script>
+                    var options = {
+                        title: false,
+                        tooltip: false,
+                        movable: false,
+                        zoomable: false,
+                        rotatable: false,
+                        scalable: false,
+                        fullscreen: false,
+                        toolbar: true,
+                    };
+                    var viewer = new Viewer(document.getElementById('images'), options);
+                </script>                       
+                <!-- Text Area -->
+                <div id="code-main">エディット画面
+                    <div id="code_editor">
+                        <form><textarea id="code" name="code">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;script&gt;
+        // ↓ your code enter!! ↓
+
+        // 名前の変数
+        var name = "テスト太郎";
+        // 誕生年の変数
+        var birth = 1970;
+        // 勤務先の変数
+        var company = "JavaScript株式会社";
+        // 役職の変数
+        var position = "課長";
+        // 今年の年取得
+        var now = new Date();
+        var year = now.getFullYear();
+        var str1 = name + "さんの年齢は不明です。";
+        if (!isNaN(birth) && typeof birth == "number"){
+            var age = year - birth;
+            if(age > 17 || age < 66){
+                str1 = name + "さんの年齢は" + age + "歳です。";
+            }
+        }
+        var str2 = company + "の" + position + "です。";
+        document.write(str1);
+        document.write("<br>");
+        document.write(str2);
+    &lt;/script&gt;
+&lt;/html&gt;
+                        </textarea></form>
+                    </div>
+                    <div id="code-sub">
+                        <a href="" class="code-btn" onclick="fnReload();" title="最初からやり直す">
+                            <i class="fas fa-reply animated-hover"></i>
+                        </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="#" class="code-btn" onclick="updatePreview();" title="コードを実行">
+                            <i class="fas fa-caret-square-right animated-hover"></i>
+                        </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
+                <!-- Text Area End -->
+            </div>
+            <div id="right">
+                <!-- Preview Area -->
+                <div id="preview-title">
+                    <h3>出力値</h3>
+                </div>
+                <iframe id="preview"></iframe>
+                    <script>
+                        var delay;
+                        var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+                            mode: "javascript",
+                            lineNumbers: true,
+                            matchBrackets: true,
+                            continueComments: "Enter",
+                            extraKeys: {"Ctrl-Q": function(cm){ cm.foldCode(cm.getCursor()); }},
+                            indentUnit: 4,
+                            indentWithTabs: true,
+                            enterMode: "keep",
+                            tabMode: "shift",
+                            theme: "3024-night",
+                            foldGutter: true,
+                            gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+                        });
+            
+                        editor.foldCode(CodeMirror.Pos(13,0));
+                            
+                        function updatePreview() {   
+                            var previewFrame = document.getElementById('preview');
+                            var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
+                            preview.open();
+                            preview.write(editor.getValue());
+                            preview.close();
+                        }
+                        function isSucces() {
+                            window.onload=function(){
+                                var ans=document.body.textContent || document.body.innerText;
+                                alert(ans);
+                            }
+                        }
+                        function fnReload() {
+                            location.reload();
+                        }
+
+                    </script>
+                <div id="clear"></div>
+                <!-- SuccesView Area -->
+                <div id="succes-title">
+                    <h3>期待する出力値</h3>
+                </div>
+                <div id="succesview">
+                    テスト太郎さんの年齢は48歳です。<br>
+                    JavaScript株式会社の部長です。
+                </div>
+                <!-- Hint Area -->
+                <div id="hint-box">
+                    <b>ヒント</b><br>
+                    ・変数に代入する値で文字列は ""（ダブルクォーテーション）か ''（シングルクォーテーション）で囲む<br>
+                    ・行末には ；（セミコロン）を付ける<br>
+                    ・論理演算子 ＆＆ は演算対象の両方が true の時は true を、それ以外の時は false を返す<br>
+                    ・論理演算子 || は 演算対象の両方が false の時は false を、それ以外の時は true を返す<br>
+                    <b>参考</b><br>
+                    isNaN()関数・・・引数が数値ではないことをチェックします<br>
+                    typeof演算子・・・対象となる値のデータ型を表す文字列を返します<br>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
