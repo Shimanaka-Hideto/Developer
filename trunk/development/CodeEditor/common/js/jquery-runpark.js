@@ -23,7 +23,6 @@
         return dl;
     };
     $.fn.runPark = function(dst, hook) {
-        alert(dst);
         var json2html = hook || json2dl;
         var query = {s:(this.val() || this.text())};
         $.post(parkURI, query, function(json){
