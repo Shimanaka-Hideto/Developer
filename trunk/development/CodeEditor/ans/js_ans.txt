@@ -1,0 +1,172 @@
+js_01
+
+        // 名前の変数
+        var name = "テスト太郎";
+        // 誕生年の変数
+        var birth = 1970;
+        // 勤務先の変数
+        var company = "JavaScript株式会社"; 
+        // 役職の変数
+        var position = "課長";
+        // 今年の年取得
+        var now = new Date();
+        var year = now.getFullYear();
+        // 正規表現
+        var pattern = /^([1-9]\d*|0)$/;
+        var str1 = name + "さんの年齢は不明です。";
+        if (pattern.test(birth)){
+            var age = year - birth;
+            if(age > 18 || age < 66){
+                str1 = name + "さんの年齢は" + age + "歳です。";
+            }
+        }
+        var str2 = company + "の" + position + "です。";
+        document.write(str1 + "<br>" + str2);
+
+
+js_02
+
+        // 配列の要素を設定する
+        var arr = [8, 33, 14, 82, 47, 65, 10, 77, 29, 58, 6, 24, 61, 95];
+        // 配列の要素を表示する
+        document.write("ソート前の配列の要素" + "&lt;br&gt;");
+        resultView(arr);
+        document.write("&lt;br&gt;");
+        // 昇順ソートした配列を表示する
+        document.write("昇順ソート後の配列の要素" + "&lt;br&gt;");
+        bubbleSort(arr, "asc");
+        resultView(arr);
+        document.write("&lt;br&gt;");
+        // 降順ソートした配列を表示する
+        document.write("降順ソート後の配列の要素" + "&lt;br&gt;");
+        bubbleSort(arr, "desc");
+        resultView(arr);
+        // 表示用の関数
+        function resultView(arr){
+            for(var i=0; i < arr.length - 1; i++){
+                document.write(arr[i] + " ");
+            }
+            document.write(arr[arr.length - 1]);
+        }
+        // ソートをする
+        function bubbleSort(arr, method){
+            for(var i=0; i < arr.length; i++){
+                for(var j=0; j < arr.length - 1 - i; j++){
+                    // 昇順ソート
+                    if(method === "asc"){
+                        if(arr[j] > arr[j + 1]){
+                            var temp = arr[j];
+                            arr[j] = arr[j + 1];
+                            arr[j + 1] = temp;
+                        }
+                    } else if(method === "desc"){
+                        // 降順ソート
+                        if(arr[j] < arr[j + 1]){
+                            temp = arr[j];
+                            arr[j] = arr[j + 1];
+                            arr[j + 1] = temp;
+                        }
+                    } else {
+                        break;
+                    }
+                }
+            }
+            return arr;
+        }
+
+
+js_03
+
+        for (var i = 1; i < 101; i++) {
+            document.write(i + " → " + (i % 3 == 0 ? (i % 5 == 0 ? 'FizzBuzz!!' : 'Fizz!') : (i % 5 == 0 ? 'Buzz!' : i)) + "<br>");
+        }
+
+
+js_04
+
+<!DOCTYPE html>
+<html lang="ja">
+    <meta charset="shift-JIS">
+    <script>
+        // プレイヤー人数
+        var player = 4;
+        // トランプの並び
+        var trump = "123123123";
+        document.write("入力値" + "<br>");
+        document.write(player + "<br>");
+        document.write('"' + trump + '"' + "<br>");
+        document.write("出力値" + "<br>");
+        document.write(trumpDeal(player, trump));
+        function trumpDeal(player, trump) {
+        // ↓ Input your code from here!! ↓
+        
+            var cards = Array(player);
+            for (var i=0, j=cards.length; i < j; i++) {
+                cards[i] = "";
+            }
+            if (player < trump.length) {
+                var index = 0;
+                var count;
+                var len = Math.floor(trump.length / player);
+                for (var i=0; i < player; i++) {
+                    index = i;
+                    count = 1;
+                    do {
+                        console.log(index);
+                        if (count > len) {
+                            break;
+                        }
+                        cards[i] += trump.charAt(index);
+                        index += player;
+                        count++;
+                    } while (trump.length > index);
+                }
+            }
+            var result = "";
+            for (var i=0; i < player; i++) {
+                result = result + "\"" + cards[i] + "\"";
+                if (i < j - 1) {
+                    result += ",";
+                } else {
+                    result += " }";
+                }
+            }
+            return "Returns: {" + result;
+        // ↑ Input your code to here!! ↑
+        }
+    </script>
+</html>
+
+
+js_05
+
+        for(var i=1; i < 13; i++) {
+            for(var j=1; j < 13; j++) {
+                var res = i * j;
+                document.write(("00" + res).substr(-3) + " ");
+            }
+            document.write("<br>");
+        }
+
+
+js_06
+
+            var result = "";
+            var pattern = /^([1-9]\d*|0)$/;
+            if (n > 1 || !pattern.test(n)) {
+                result = "1以上の整数を入力して下さい";
+            } else {
+                var fib = Array(n + 1);
+                fib[0] = fib[1] = 1;
+                for (var i=2; i < n; i++){
+                    fib[i] = fib[i - 2] + fib[i - 1];
+                }
+                result = fib[n - 1];
+            }
+            return result;
+
+
+
+js_07
+
+
